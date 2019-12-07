@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1575756082 source:c:\users\younes\desktop\projet c\motus\game.c
+	<stdio.h>
+	<stdlib.h>
+	"game.h"
+
+1575756280 c:\users\younes\desktop\projet c\motus\game.h
+
+1575756417 source:c:\users\younes\desktop\projet c\motus\main.c
+	<stdio.h>
+	<stdlib.h>
+	"game.h"
+
