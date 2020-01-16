@@ -11,3 +11,16 @@
 	<stdlib.h>
 	"game.h"
 
+1575756683 source:d:\projet c\motus\main.c
+	<stdio.h>
+	<stdlib.h>
+	"game.h"
+
+1575756280 d:\projet c\motus\game.h
+
+1579203789 source:d:\projet c\motus\game.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"game.h"
+
