@@ -1,3 +1,3 @@
-void comparer(char input[5],char mot[5],char *evaluation,int taille);
+void comparer(char input[],char mot[],char *evaluation,int taille);
 void initializer_evalu(char evalu[],char vf,int taille);
-
+void generermot(char mot[],int taille);

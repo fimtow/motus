@@ -3,11 +3,13 @@
 #include <string.h>
 #include "game.h"
 
+
 int main()
 {
     int taille = 6;
     char mot[taille+1];
-    strcpy(mot,"manger");
+    //strcpy(mot,"manger");
+    generermot(mot,taille);
     char evaluation[taille+1];
     initializer_evalu(evaluation,'F',taille);
     char input[taille+1];
