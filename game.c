@@ -43,9 +43,8 @@ void generermot(char mot[],int taille)
 {
     srand(time(NULL));
     int r = rand()%10;
-
     char* liste[taille];
-    FILE* f = fopen("mots.txt","r");
+    FILE* f = fopen(dictionnaire_utiliser(taille),"r");
 
     int c=0;
 
@@ -55,6 +54,33 @@ void generermot(char mot[],int taille)
         c++;
     }
     fclose(f);
+
     strcpy(mot,liste);
+
+}
+//choisir le nombre des lettres
+int choisir_le_nombre_des_lettres()
+{
+    int c;
+    do
+    {
+        printf("choisissez le nombres des lettres entre (6-10)\n");
+        scanf("%d",&c);
+
+    }while(c>10 || c<6);
+    return c;
+}
+//choisir le fichier contenant les mots du meme nombre de lettres
+char* dictionnaire_utiliser(int taille)
+{
+    switch(taille)
+    {
+        case 6:return ("mots.txt");
+        case 7:return ("mots7.txt");
+        case 8:return ("mots8.txt");
+        case 9:return ("mots9.txt");
+        case 10:return ("mots10.txt");
+    }
+
 
 }

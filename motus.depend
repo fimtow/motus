@@ -26,3 +26,18 @@
 	<time.h>
 	"game.h"
 
+1579386902 source:c:\users\abdessamad\desktop\motus\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"game.h"
+
+1579386909 c:\users\abdessamad\desktop\motus\game.h
+
+1579387010 source:c:\users\abdessamad\desktop\motus\game.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	"game.h"
+
