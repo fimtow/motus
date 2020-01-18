@@ -43,25 +43,18 @@ void generermot(char mot[],int taille)
 {
     srand(time(NULL));
     int r = rand()%10;
-    char* liste[6];
+
+    char* liste[taille];
     FILE* f = fopen("mots.txt","r");
 
-    fscanf(f,"%s",liste);
-    printf("%s",liste);
+    int c=0;
 
+    while(!feof(f)&& c!=r)
+    {
+        fscanf(f,"%s",liste);
+        c++;
+    }
     fclose(f);
-    int i=0;
-    int j=0;
-    while(i!=r)
-    {
-        printf("%c",liste[j]);
-        if(liste[j]=='\n')
-            i++;
-        j++;
-    }
-    for(int i=0;i<taille;i++)
-    {
-        mot[i] = liste[j+i];
-    }
-    printf("%s",mot);
+    strcpy(mot,liste);
+
 }
