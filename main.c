@@ -2,12 +2,15 @@
 #include <stdlib.h>
 #include <string.h>
 #include "jeux.h"
+#include "mots.h"
 
 
 int main()
 {
     // initialisation du dictionnaire
     char dictionnaire[DICTIO][30];
+    //nombre de tentative
+    int tentative=1;
     chargerDictionnaire(dictionnaire);
     // game state
     int taille = choisirNbrLettres();
@@ -21,7 +24,7 @@ int main()
     char vrai[taille+1];
     initializerMot(vrai,'V',taille);
     // game loop
-    while(strcmp(evaluation,vrai) != 0)
+    while(strcmp(evaluation,vrai) != 0 && tentative<=7 )
     {
         scanf("%s",input);
         if(motValable(input,taille,mot[0],dictionnaire))
@@ -29,6 +32,8 @@ int main()
             comparer(input,mot,evaluation,taille);
             printf("%s\n",evaluation);
         }
+
+        tentative++;
     }
     printf("Vous avez gagne ! cliquez sur n'importe quelle touche pour quitter !");
     getchar();
