@@ -31,20 +31,20 @@ void comparer(char input[],char mot[],char evaluation[],int taille)
     }
 }
 
-void initializer_evalu(char evalu[],char vf,int taille)
+void initializerEvalu(char evalu[],char vf,int taille)
 {
     for(int i=0;i<taille;i++)
     {
         evalu[i] = vf;
     }
 }
-
-void generermot(char mot[],int taille)
+// move to mots.h
+void genererMot(char mot[],int taille)
 {
     srand(time(NULL));
     int r = rand()%10;
     char* liste[taille];
-    FILE* f = fopen(dictionnaire_utiliser(taille),"r");
+    FILE* f = fopen(dictionnaireUtilise(taille),"r");
 
     int c=0;
 
@@ -58,8 +58,8 @@ void generermot(char mot[],int taille)
     strcpy(mot,liste);
 
 }
-//choisir le nombre des lettres
-int choisir_le_nombre_des_lettres()
+
+int choisirNbrLettres()
 {
     int c;
     do
@@ -70,8 +70,8 @@ int choisir_le_nombre_des_lettres()
     }while(c>10 || c<6);
     return c;
 }
-//choisir le fichier contenant les mots du meme nombre de lettres
-char* dictionnaire_utiliser(int taille)
+// move to mots.c
+char* dictionnaireUtilise(int taille)
 {
     switch(taille)
     {

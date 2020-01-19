@@ -6,15 +6,15 @@
 
 int main()
 {
-    int taille = choisir_le_nombre_des_lettres();
+    int taille = choisirNbrLettres();
     char mot[taille];
-    generermot(mot,taille);
+    genererMot(mot,taille);
     char evaluation[taille];
-    initializer_evalu(evaluation,'F',taille);
+    initializerEvalu(evaluation,'F',taille);
     char input[taille];
     printf("Essayez de deviner un mot de %d lettres !\n",taille);
     char vrai[taille];
-    initializer_evalu(vrai,'V',taille);
+    initializerEvalu(vrai,'V',taille);
     while(strcmp(evaluation,vrai) != 0)
     {
         scanf("%s",input);

@@ -1,6 +1,6 @@
 
-int choisir_le_nombre_des_lettres();//choisir le nombre des lettres
+int choisirNbrLettres();// move to mots.h
 void comparer(char input[],char mot[],char *evaluation,int taille);
-void initializer_evalu(char evalu[],char vf,int taille);
-void generermot(char mot[],int taille);
-char* dictionnaire_utiliser(int taille);//choisir le fichier contenant les mots du meme nombre de lettres
+void initializerEvalu(char evalu[],char vf,int taille);
+void genererMot(char mot[],int taille);
+char* dictionnaireUtilise(int taille);// move to mots.h
