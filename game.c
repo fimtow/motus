@@ -51,11 +51,28 @@ void afficherAide(char mot[],int taille)
     printf("%s\n",aide);
 }
 
-int motValable(char input[],int taille,char premierChar)
+int motValable(char input[],int taille,char premierChar,char dictio[])
 {
     if((input[0] != premierChar) || strlen(input)<taille)
         return 0;
-    return 1;
+    // recherche dichotomique du mot dans le dictionnaire
+    int binf = 0;
+    int bsup = DICTIO-1;
+    int moy = (bsup+binf)/2;
+
+    while(binf<=bsup && strcmp(dictio+moy*30,input) != 0)
+    {
+
+        if(strcmp(dictio+moy*30,input)<0)
+            binf = moy+1;
+        else
+            bsup = moy-1;
+        moy = (bsup+binf)/2;
+    }
+    if(strcmp(dictio+moy*30,input) == 0)
+        return 1;
+    else
+        return 0;
 }
 // move to mots.h
 void genererMot(char mot[],int taille)
@@ -102,4 +119,19 @@ char* dictionnaireUtilise(int taille)
     }
 
 
+}
+
+// move to mots.c
+void chargerDictionnaire(char dictio[])
+{
+    //besoin d'un meilleur dictionnaire qui ne contientpas les mots compose et sans accents pour l'instant j'utilise le testdictionnaire.txt
+    FILE* f = fopen("testdictionnaire.txt","r");
+    int c=0;
+
+    while(!feof(f))
+    {
+        fscanf(f,"%s",dictio+30*c);
+        c++;
+    }
+    fclose(f);
 }

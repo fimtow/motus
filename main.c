@@ -6,6 +6,9 @@
 
 int main()
 {
+    // initialisation du dictionnaire
+    char dictionnaire[DICTIO][30];
+    chargerDictionnaire(dictionnaire);
     // game state
     int taille = choisirNbrLettres();
     char mot[taille+1];
@@ -21,7 +24,7 @@ int main()
     while(strcmp(evaluation,vrai) != 0)
     {
         scanf("%s",input);
-        if(motValable(input,taille,mot[0]))
+        if(motValable(input,taille,mot[0],dictionnaire))
         {
             comparer(input,mot,evaluation,taille);
             printf("%s\n",evaluation);
