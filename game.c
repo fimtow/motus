@@ -31,26 +31,45 @@ void comparer(char input[],char mot[],char evaluation[],int taille)
     }
 }
 
-void initializerEvalu(char evalu[],char vf,int taille)
+void initializerMot(char mot[],char vf,int taille)
 {
     for(int i=0;i<taille;i++)
     {
-        evalu[i] = vf;
+        mot[i] = vf;
     }
+}
+
+void afficherAide(char mot[],int taille)
+{
+    srand(time(NULL));
+    int r = rand()%(taille-1);
+    char aide[taille+1];
+    aide[taille] = '\0';
+    initializerMot(aide,'*',taille);
+    aide[0] = mot[0];
+    aide[1+r] = mot[1+r];
+    printf("%s\n",aide);
+}
+
+int motValable(char input[],int taille,char premierChar)
+{
+    if((input[0] != premierChar) || strlen(input)<taille)
+        return 0;
+    return 1;
 }
 // move to mots.h
 void genererMot(char mot[],int taille)
 {
     srand(time(NULL));
     int r = rand()%10;
-    char* liste[taille];
+    char* liste[taille+1];
     FILE* f = fopen(dictionnaireUtilise(taille),"r");
 
     int c=0;
 
-    while(!feof(f)&& c!=r)
+    while(!feof(f)&& c<r+1)
     {
-        fscanf(f,"%s",liste);
+        fscanf(f,"%s\n",liste);
         c++;
     }
     fclose(f);
