@@ -1,41 +1,73 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
+#include <SDL2/SDL_ttf.h>
+#include <SDL2/SDL_timer.h>
 #include "jeux.h"
 #include "mots.h"
+#include "gui.h"
 
 
-int main()
+int main(int argc, char** argv)
 {
     // initialisation du dictionnaire
-    char dictionnaire[DICTIO][30];
-    //nombre de tentative
-    int tentative=1;
-    chargerDictionnaire(dictionnaire);
-    // game state
-    int taille = choisirNbrLettres();
-    char mot[taille+1];
-    genererMot(mot,taille);
-    char evaluation[taille+1];
-    initializerMot(evaluation,'F',taille);
-    char input[taille+1];
-    printf("Essayez de deviner un mot de %d lettres !\n",taille);
-    afficherAide(mot,taille);
-    char vrai[taille+1];
-    initializerMot(vrai,'V',taille);
-    // game loop
-    while(strcmp(evaluation,vrai) != 0 && tentative<=7 )
-    {
-        scanf("%s",input);
-        if(motValable(input,taille,mot[0],dictionnaire))
-        {
-            comparer(input,mot,evaluation,taille);
-            printf("%s\n",evaluation);
-        }
+    //char dictionnaire[DICTIO][30];
+    //chargerDictionnaire(dictionnaire);
 
-        tentative++;
+
+    SDL_Window* win;
+    SDL_Renderer* rend;
+    TTF_Font *font;
+    initializerSDL(&win,&rend,&font);
+
+
+    // game state
+    etatJeux* monEtat = (etatJeux*)malloc(sizeof(etatJeux));
+
+    initializerEtatJeux(monEtat);
+
+    // a refaire afficherAide(mot,taille);
+    // initialisation des textures et rectangles
+    SDL_Rect rectangles[monEtat->taille*7];
+    grille(rectangles,monEtat->taille);
+
+
+    SDL_Texture* lettres[26];
+    SDL_Texture* rondJaune;
+    initializerTextures(rend,&rondJaune,lettres,font);
+
+
+
+    // game loop
+
+    while(monEtat->etatPartie == ENCOURS)
+    {
+        SDL_StartTextInput();
+        SDL_Event event;
+        char lettreUtf8[32];
+        char lettre = 48;
+        while(SDL_PollEvent(&event))
+        {
+            if (event.type == SDL_QUIT)
+            {
+                monEtat->etatPartie = PERDU;
+            }
+            else if(event.type == SDL_TEXTINPUT)
+            {
+                strcpy(lettreUtf8,event.text.text);
+                lettre = utf8EnAscii(lettreUtf8);
+                //printf("%s",lettreUtf8);
+                //printf("%c",lettre);
+            }
+        }
+        miseAjour(lettre,monEtat);
+        afficher(rectangles,rend,monEtat,lettres);
+        SDL_Delay(1000/60);
     }
-    printf("Vous avez gagne ! cliquez sur n'importe quelle touche pour quitter !");
-    getchar();
+
+    fermerSDL(win,rend,font);
+
     return 0;
 }
