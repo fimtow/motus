@@ -39,18 +39,6 @@ void initializerMot(char mot[],char vf,int taille)
     }
 }
 
-void afficherAide(char mot[],int taille)
-{
-    srand(time(NULL));
-    int r = rand()%(taille-1);
-    char aide[taille+1];
-    aide[taille] = '\0';
-    initializerMot(aide,'*',taille);
-    aide[0] = mot[0];
-    aide[1+r] = mot[1+r];
-    printf("%s\n",aide);
-}
-
 int motValable(char input[],int taille,char premierChar,char dictio[])
 {
     if((input[0] != premierChar) || strlen(input)<taille)

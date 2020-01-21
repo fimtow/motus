@@ -39,6 +39,11 @@ void initializerEtatJeux(etatJeux* monEtat)
         initializerMot(&monEtat->evaluation[i][0],'F',monEtat->taille);
         initializerMot(&monEtat->input[i][0],NULL,11);
     }
+    initializerMot(monEtat->decouvert,0,11);
+    srand(time(NULL));
+    int r = rand()%(monEtat->taille-1);
+    monEtat->decouvert[0] = 1;
+    monEtat->decouvert[1+r] = 1;
 }
 
 void grille(SDL_Rect rectangles[],int taille)
@@ -67,11 +72,12 @@ void afficher(SDL_Rect rectangles[],SDL_Renderer* rend,etatJeux* monEtat,SDL_Tex
         else if(monEtat->evaluation[i/monEtat->taille][i%monEtat->taille] == 'P')
             SDL_RenderCopy(rend, rondJaune, NULL, &rectangles[i]);
     }
-    iter = (monEtat->tentative-1)*monEtat->taille+monEtat->curseur;
+    iter = (monEtat->tentative)*monEtat->taille;
     for(int i=0;i<iter;i++)
     {
-        if(monEtat->input[i/monEtat->taille][i%monEtat->taille] != NULL)
+        if(monEtat->input[i/monEtat->taille][i%monEtat->taille] != NULL )
             SDL_RenderCopy(rend, lettres[monEtat->input[i/monEtat->taille][i%monEtat->taille]-97], NULL, &rectangles[i]);
+
     }
     SDL_RenderPresent(rend);
 }
@@ -134,3 +140,23 @@ void miseAjour(char lettre,etatJeux* monEtat)
     }
 }
 
+void afficherAide(etatJeux* monEtat)
+{
+    static int premiereFois = 1;
+    if(!premiereFois)
+    {
+        for(int i=0;i<monEtat->taille;i++)
+        {
+            if(monEtat->evaluation[monEtat->tentative-2][i]=='V')
+                monEtat->decouvert[i] = 1;
+        }
+    }
+    if(premiereFois)
+        premiereFois = 0;
+    for(int i=0;i<monEtat->taille;i++)
+    {
+        if(monEtat->decouvert[i]==1)
+            monEtat->input[monEtat->tentative-1][i] = monEtat->mot[i];
+    }
+
+}

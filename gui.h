@@ -4,7 +4,8 @@
 #define POSGRILLEY 50
 #define DISTGRILLE 5
 #define TAILLEGRILLE 50
-
+#define TEMPSEC 5
+#define TEMPSREF 60*TEMPSEC
 typedef enum etat
 {
     ENCOURS,
@@ -18,6 +19,7 @@ typedef struct etatJeux
     int tentative;
     int curseur;
     char mot[11];
+    char decouvert[11];
     char evaluation[7][11];
     char input[7][11];
     etat etatPartie;
@@ -31,4 +33,6 @@ void initializerTextures(SDL_Renderer* rend,SDL_Texture** rondJaune,SDL_Texture*
 void changerEtat(etatJeux* monEtat);
 char utf8EnAscii(char utf8[]);
 void miseAjour(char lettre,etatJeux* monEtat);
+void afficherAide(etatJeux* monEtat);
+
 

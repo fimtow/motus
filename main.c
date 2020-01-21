@@ -38,16 +38,17 @@ int main(int argc, char** argv)
     SDL_Texture* rondJaune;
     initializerTextures(rend,&rondJaune,lettres,font);
 
-
-
+    int tempsReflexion = TEMPSREF;
+    afficherAide(monEtat);
     // game loop
-
     while(monEtat->etatPartie == ENCOURS)
     {
+
         SDL_StartTextInput();
         SDL_Event event;
         char lettreUtf8[32];
         char lettre = 48;
+
         while(SDL_PollEvent(&event))
         {
             if (event.type == SDL_QUIT)
@@ -56,10 +57,14 @@ int main(int argc, char** argv)
             }
             else if(event.type == SDL_KEYDOWN && event.key.keysym.scancode == SDL_SCANCODE_RETURN)
             {
+
                 if(motValable(&(monEtat->input[monEtat->tentative-1][0]),monEtat->taille,monEtat->mot[0],dictionnaire))
                     comparer(&(monEtat->input[monEtat->tentative-1][0]),monEtat->mot,&(monEtat->evaluation[monEtat->tentative-1][0]),monEtat->taille);
                 monEtat->tentative++;
                 monEtat->curseur = 0;
+                tempsReflexion = TEMPSREF;
+                afficherAide(monEtat);
+
             }
             else if(event.type == SDL_KEYDOWN && event.key.keysym.scancode == SDL_SCANCODE_DELETE && monEtat->curseur != 0)
             {
@@ -70,15 +75,23 @@ int main(int argc, char** argv)
             {
                 strcpy(lettreUtf8,event.text.text);
                 lettre = utf8EnAscii(lettreUtf8);
-                //printf("%s",lettreUtf8);
                 if(lettreUtf8[0] == 13)
                     printf("lol");
             }
         }
         miseAjour(lettre,monEtat);
         afficher(rectangles,rend,monEtat,lettres,rondJaune);
+
         changerEtat(monEtat);
         SDL_Delay(1000/60);
+        tempsReflexion--;
+        if(tempsReflexion<0)
+        {
+            monEtat->tentative++;
+            monEtat->curseur = 0;
+            tempsReflexion = TEMPSREF;
+        }
+
     }
     fermerSDL(win,rend,font);
 
