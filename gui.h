@@ -26,7 +26,7 @@ void initializerSDL(SDL_Window** win,SDL_Renderer** rend,TTF_Font** font);
 void fermerSDL(SDL_Window* win,SDL_Renderer* rend,TTF_Font *font);
 void initializerEtatJeux(etatJeux* monEtat);
 void grille(SDL_Rect rectangles[],int taille);
-void afficher(SDL_Rect rectangles[],SDL_Renderer* rend,etatJeux* monEtat,SDL_Texture* lettres[]);
+void afficher(SDL_Rect rectangles[],SDL_Renderer* rend,etatJeux* monEtat,SDL_Texture* lettres[],SDL_Texture* rondJaune);
 void initializerTextures(SDL_Renderer* rend,SDL_Texture** rondJaune,SDL_Texture* lettres[],TTF_Font *font);
 void changerEtat(etatJeux* monEtat);
 char utf8EnAscii(char utf8[]);

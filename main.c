@@ -13,8 +13,8 @@
 int main(int argc, char** argv)
 {
     // initialisation du dictionnaire
-    //char dictionnaire[DICTIO][30];
-    //chargerDictionnaire(dictionnaire);
+    char dictionnaire[DICTIO][30];
+    chargerDictionnaire(dictionnaire);
 
 
     SDL_Window* win;
@@ -27,7 +27,7 @@ int main(int argc, char** argv)
     etatJeux* monEtat = (etatJeux*)malloc(sizeof(etatJeux));
 
     initializerEtatJeux(monEtat);
-
+    printf("%s",monEtat->mot);
     // a refaire afficherAide(mot,taille);
     // initialisation des textures et rectangles
     SDL_Rect rectangles[monEtat->taille*7];
@@ -54,19 +54,32 @@ int main(int argc, char** argv)
             {
                 monEtat->etatPartie = PERDU;
             }
+            else if(event.type == SDL_KEYDOWN && event.key.keysym.scancode == SDL_SCANCODE_RETURN)
+            {
+                if(motValable(&(monEtat->input[monEtat->tentative-1][0]),monEtat->taille,monEtat->mot[0],dictionnaire))
+                    comparer(&(monEtat->input[monEtat->tentative-1][0]),monEtat->mot,&(monEtat->evaluation[monEtat->tentative-1][0]),monEtat->taille);
+                monEtat->tentative++;
+                monEtat->curseur = 0;
+            }
+            else if(event.type == SDL_KEYDOWN && event.key.keysym.scancode == SDL_SCANCODE_DELETE && monEtat->curseur != 0)
+            {
+                monEtat->input[monEtat->tentative-1][monEtat->curseur-1] = NULL;
+                monEtat->curseur--;
+            }
             else if(event.type == SDL_TEXTINPUT)
             {
                 strcpy(lettreUtf8,event.text.text);
                 lettre = utf8EnAscii(lettreUtf8);
                 //printf("%s",lettreUtf8);
-                //printf("%c",lettre);
+                if(lettreUtf8[0] == 13)
+                    printf("lol");
             }
         }
         miseAjour(lettre,monEtat);
-        afficher(rectangles,rend,monEtat,lettres);
+        afficher(rectangles,rend,monEtat,lettres,rondJaune);
+        changerEtat(monEtat);
         SDL_Delay(1000/60);
     }
-
     fermerSDL(win,rend,font);
 
     return 0;

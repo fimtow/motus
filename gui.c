@@ -15,7 +15,7 @@ void initializerSDL(SDL_Window** win,SDL_Renderer** rend,TTF_Font** font)
     *win = SDL_CreateWindow("Motus",SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED,LARGEUR, HAUTEUR, 0);
     *rend = SDL_CreateRenderer(*win, -1, SDL_RENDERER_ACCELERATED);
     TTF_Init();
-    *font = TTF_OpenFont("ressources/police.ttf",50);
+    *font = TTF_OpenFont("ressources/police.ttf",200);
 }
 
 void fermerSDL(SDL_Window* win,SDL_Renderer* rend,TTF_Font *font)
@@ -35,7 +35,10 @@ void initializerEtatJeux(etatJeux* monEtat)
     genererMot(monEtat->mot,monEtat->taille);
     monEtat->etatPartie = ENCOURS;
     for(int i=0;i<7;i++)
+    {
         initializerMot(&monEtat->evaluation[i][0],'F',monEtat->taille);
+        initializerMot(&monEtat->input[i][0],NULL,11);
+    }
 }
 
 void grille(SDL_Rect rectangles[],int taille)
@@ -49,15 +52,26 @@ void grille(SDL_Rect rectangles[],int taille)
     }
 }
 
-void afficher(SDL_Rect rectangles[],SDL_Renderer* rend,etatJeux* monEtat,SDL_Texture* lettres[])
+void afficher(SDL_Rect rectangles[],SDL_Renderer* rend,etatJeux* monEtat,SDL_Texture* lettres[],SDL_Texture* rondJaune)
 {
     SDL_SetRenderDrawColor(rend,53,59,72,255);
     SDL_RenderClear(rend);
     SDL_SetRenderDrawColor(rend,41,128,185,255);
     SDL_RenderFillRects(rend,rectangles,(monEtat->taille)*7);
-    for(int i=0;i<monEtat->curseur;i++)
+    SDL_SetRenderDrawColor(rend,255,0,0,255);
+    int iter = (monEtat->tentative-1)*monEtat->taille;
+    for(int i=0;i<iter;i++)
     {
-        SDL_RenderCopy(rend, lettres[monEtat->input[0][i]-65], NULL, &rectangles[i]);
+        if(monEtat->evaluation[i/monEtat->taille][i%monEtat->taille] == 'V')
+            SDL_RenderFillRect(rend,&rectangles[i]);
+        else if(monEtat->evaluation[i/monEtat->taille][i%monEtat->taille] == 'P')
+            SDL_RenderCopy(rend, rondJaune, NULL, &rectangles[i]);
+    }
+    iter = (monEtat->tentative-1)*monEtat->taille+monEtat->curseur;
+    for(int i=0;i<iter;i++)
+    {
+        if(monEtat->input[i/monEtat->taille][i%monEtat->taille] != NULL)
+            SDL_RenderCopy(rend, lettres[monEtat->input[i/monEtat->taille][i%monEtat->taille]-97], NULL, &rectangles[i]);
     }
     SDL_RenderPresent(rend);
 }
@@ -83,8 +97,7 @@ void initializerTextures(SDL_Renderer* rend,SDL_Texture** rondJaune,SDL_Texture*
 void changerEtat(etatJeux* monEtat)
 {
     static int initializerVrai = 0;
-    // table may lost its data
-    static char* vrai;
+    static char vrai[11];
     if(!initializerVrai)
     {
         initializerVrai = 1;
@@ -92,12 +105,12 @@ void changerEtat(etatJeux* monEtat)
     }
     if(monEtat->tentative>7)
     {
-        if(strcmp(monEtat->evaluation[monEtat->tentative-1],vrai))
+        if(strcmp(monEtat->evaluation[monEtat->tentative-2],vrai))
             monEtat->etatPartie = PERDU;
         else
             monEtat->etatPartie = GAGNE;
     }
-    else if(!strcmp(monEtat->evaluation[monEtat->tentative-1],vrai))
+    else if(!strcmp(monEtat->evaluation[monEtat->tentative-2],vrai))
     {
         monEtat->etatPartie = GAGNE;
     }
@@ -106,9 +119,9 @@ void changerEtat(etatJeux* monEtat)
 char utf8EnAscii(char utf8[])
 {
     char lettre = utf8[0];
-    if(lettre >= 97 && lettre <= 122)
-        lettre -= 32;
-    if(lettre <65 || lettre >90)
+    if(lettre >= 65 && lettre <= 90)
+        lettre += 32;
+    if(lettre <97 || lettre >122)
         lettre = 48;
     return lettre;
 }
