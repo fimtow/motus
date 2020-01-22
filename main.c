@@ -16,83 +16,77 @@ int main(int argc, char** argv)
     char dictionnaire[DICTIO][30];
     chargerDictionnaire(dictionnaire);
 
-
+    // initialisation de SDL
     SDL_Window* win;
     SDL_Renderer* rend;
     TTF_Font *font;
     initializerSDL(&win,&rend,&font);
 
 
-    // game state
+    // initialisation de l'etat du jeux
     etatJeux* monEtat = (etatJeux*)malloc(sizeof(etatJeux));
-
     initializerEtatJeux(monEtat);
     printf("%s",monEtat->mot);
-    // a refaire afficherAide(mot,taille);
-    // initialisation des textures et rectangles
-    SDL_Rect rectangles[monEtat->taille*7];
+
+
+    // initialisation des textures et rectangles (plus le curseur et le rectangle tentative d'ou le +2)
+    SDL_Rect rectangles[monEtat->taille*7+2];
     grille(rectangles,monEtat->taille);
-
-
     SDL_Texture* lettres[26];
     SDL_Texture* rondJaune;
     initializerTextures(rend,&rondJaune,lettres,font);
 
-    int tempsReflexion = TEMPSREF;
-    afficherAide(monEtat);
+    // les variables qui vont stocker temporairement les lettres
+    SDL_StartTextInput();
+    char lettreUtf8[32];
+    char lettre = 48;
     // game loop
+    afficherAide(monEtat);
     while(monEtat->etatPartie == ENCOURS)
     {
-
-        SDL_StartTextInput();
+        // gestion des evenements
+        lettre = 48;
         SDL_Event event;
-        char lettreUtf8[32];
-        char lettre = 48;
 
         while(SDL_PollEvent(&event))
         {
+            // clique sur le boutton fermer de la fenetre
             if (event.type == SDL_QUIT)
             {
                 monEtat->etatPartie = PERDU;
             }
+            // clique sur le boutton entrer
             else if(event.type == SDL_KEYDOWN && event.key.keysym.scancode == SDL_SCANCODE_RETURN)
             {
-
-                if(motValable(&(monEtat->input[monEtat->tentative-1][0]),monEtat->taille,monEtat->mot[0],dictionnaire))
-                    comparer(&(monEtat->input[monEtat->tentative-1][0]),monEtat->mot,&(monEtat->evaluation[monEtat->tentative-1][0]),monEtat->taille);
-                monEtat->tentative++;
-                monEtat->curseur = 0;
-                tempsReflexion = TEMPSREF;
-                afficherAide(monEtat);
-
+                // cela indique a la fonction mise a jour que l'utilisateur a appuye entrer
+                lettre = 0;
             }
+            // clique sur le boutton delete
             else if(event.type == SDL_KEYDOWN && event.key.keysym.scancode == SDL_SCANCODE_DELETE && monEtat->curseur != 0)
             {
-                monEtat->input[monEtat->tentative-1][monEtat->curseur-1] = NULL;
-                monEtat->curseur--;
+                // cela indique a la fonction mise a jour que l'utilisateur a appuye del
+                lettre = 1;
             }
+            // clique sur n'importe quel autre bouton (text)
             else if(event.type == SDL_TEXTINPUT)
             {
                 strcpy(lettreUtf8,event.text.text);
                 lettre = utf8EnAscii(lettreUtf8);
-                if(lettreUtf8[0] == 13)
-                    printf("lol");
             }
         }
-        miseAjour(lettre,monEtat);
-        afficher(rectangles,rend,monEtat,lettres,rondJaune);
+        // mise a jour de l'etat du jeux
+        miseAjour(lettre,monEtat,dictionnaire);
 
+        // affichage et render
+        afficher(rectangles,rend,monEtat,lettres,rondJaune,font);
+
+        // mise a jour de l'etat de la partie
         changerEtat(monEtat);
+        // ajustement du FPS
         SDL_Delay(1000/60);
-        tempsReflexion--;
-        if(tempsReflexion<0)
-        {
-            monEtat->tentative++;
-            monEtat->curseur = 0;
-            tempsReflexion = TEMPSREF;
-        }
 
     }
+    // nettoyage et fermeture de SDL
     fermerSDL(win,rend,font);
 
     return 0;
