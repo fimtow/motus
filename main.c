@@ -7,15 +7,12 @@
 #include <SDL2/SDL_timer.h>
 #include "jeux.h"
 #include "mots.h"
+#include "menu.h"
 #include "gui.h"
 
 
 int main(int argc, char** argv)
 {
-
-    // initialisation du dictionnaire !!! ya probleme ici
-    char dictionnaire[DICTIO][38];
-    chargerDictionnaire(dictionnaire);
 
     // initialisation de SDL
     SDL_Window* win;
@@ -23,70 +20,42 @@ int main(int argc, char** argv)
     TTF_Font *font;
     initializerSDL(&win,&rend,&font);
 
+    // initialisation des rectangles et textures
+    options* mesOptions = (options*)malloc(sizeof(options));
+    SDL_Rect bouttons[4];
+    SDL_Texture* text[4];
+    initializerMenu(bouttons,text,font,rend);
 
-    // initialisation de l'etat du jeux
-    etatJeux* monEtat = (etatJeux*)malloc(sizeof(etatJeux));
-    initializerEtatJeux(monEtat);
-    printf("%s",monEtat->mot);
-
-
-    // initialisation des textures et rectangles (plus le curseur et le rectangle tentative d'ou le +2)
-    SDL_Rect rectangles[monEtat->taille*7+2];
-    grille(rectangles,monEtat->taille);
-    SDL_Texture* lettres[26];
-    SDL_Texture* rondJaune;
-    initializerTextures(rend,&rondJaune,lettres,font);
-
-    // les variables qui vont stocker temporairement les lettres
-    SDL_StartTextInput();
-    char lettreUtf8[32];
-    char lettre = 48;
-    // game loop
-    afficherAide(monEtat);
-    while(monEtat->etatPartie == ENCOURS)
+    // gameloop
+    int stop = 0;
+    while(!stop)
     {
         // gestion des evenements
-        lettre = 48;
         SDL_Event event;
-
         while(SDL_PollEvent(&event))
         {
-            // clique sur le boutton fermer de la fenetre
             if (event.type == SDL_QUIT)
             {
-                monEtat->etatPartie = PERDU;
+                stop = 1;
             }
-            // clique sur le boutton entrer
-            else if(event.type == SDL_KEYDOWN && event.key.keysym.scancode == SDL_SCANCODE_RETURN)
+            else if(event.type == SDL_MOUSEBUTTONDOWN)
             {
-                // cela indique a la fonction mise a jour que l'utilisateur a appuye entrer
-                lettre = 0;
-            }
-            // clique sur le boutton delete
-            else if(event.type == SDL_KEYDOWN && event.key.keysym.scancode == SDL_SCANCODE_DELETE && monEtat->curseur != 0)
-            {
-                // cela indique a la fonction mise a jour que l'utilisateur a appuye del
-                lettre = 1;
-            }
-            // clique sur n'importe quel autre bouton (text)
-            else if(event.type == SDL_TEXTINPUT)
-            {
-                strcpy(lettreUtf8,event.text.text);
-                lettre = utf8EnAscii(lettreUtf8);
+                int b = bouttonSelectione(bouttons);
+                switch(b)
+                {
+                    case 0 :jeux(win,rend,font,mesOptions);break;
+                    case 1 :printf("hightscore");break;
+                    case 2 :printf("options");break;
+                }
             }
         }
-        // mise a jour de l'etat du jeux
-        miseAjour(lettre,monEtat,dictionnaire);
-
         // affichage et render
-        afficher(rectangles,rend,monEtat,lettres,rondJaune,font);
+        afficherMenu(win,rend,bouttons,text);
 
-        // mise a jour de l'etat de la partie
-        changerEtat(monEtat);
-        // ajustement du FPS
+        // wait to have 60 fps
         SDL_Delay(1000/60);
-
     }
+
     // nettoyage et fermeture de SDL
     fermerSDL(win,rend,font);
 

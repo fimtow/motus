@@ -37,7 +37,7 @@ void initializerSDL(SDL_Window** win,SDL_Renderer** rend,TTF_Font** font);
 void fermerSDL(SDL_Window* win,SDL_Renderer* rend,TTF_Font *font);
 
 // initialise une variable de type etatJeux
-void initializerEtatJeux(etatJeux* monEtat);
+void initializerEtatJeux(etatJeux* monEtat,options* mesOptions);
 
 // initialise le tableau de rectangles qui constitue la grille de jeux selon la taille des mots
 void grille(SDL_Rect rectangles[],int taille);

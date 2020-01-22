@@ -6,6 +6,7 @@
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_ttf.h>
 #include <SDL2/SDL_timer.h>
+#include "menu.h"
 #include "gui.h"
 #include "jeux.h"
 
@@ -30,10 +31,12 @@ void fermerSDL(SDL_Window* win,SDL_Renderer* rend,TTF_Font *font)
 }
 
 // initialise une variable de type etatJeux
-void initializerEtatJeux(etatJeux* monEtat)
+void initializerEtatJeux(etatJeux* monEtat,options* mesOptions)
 {
     monEtat->taille = 6;
+    //mesOptions->tailleMot
     monEtat->tempsReflexion = TEMPSREF;
+    //mesOptions->tempsReflexion*60
     monEtat->tentative = 1;
     monEtat->curseur = 0;
     genererMot(monEtat->mot,monEtat->taille);
