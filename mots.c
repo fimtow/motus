@@ -57,7 +57,8 @@ void chargerDictionnaire(char dictio[])
 
     while(!feof(f))
     {
-        fscanf(f,"%s",dictio+30*c);
+        // ya probleme ici
+        fscanf(f,"%s",&dictio[c*30]);
         c++;
     }
     fclose(f);

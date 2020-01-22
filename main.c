@@ -12,8 +12,9 @@
 
 int main(int argc, char** argv)
 {
-    // initialisation du dictionnaire
-    char dictionnaire[DICTIO][30];
+
+    // initialisation du dictionnaire !!! ya probleme ici
+    char dictionnaire[DICTIO][38];
     chargerDictionnaire(dictionnaire);
 
     // initialisation de SDL
