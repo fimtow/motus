@@ -43,15 +43,16 @@ int main(int argc, char** argv)
                 int b = bouttonSelectione(bouttons);
                 switch(b)
                 {
-                    case 0 :jeux(win,rend,font,mesOptions);break;
+                    case 0 :jeux(win,rend,font,mesOptions,&stop);break;
                     case 1 :printf("hightscore");break;
                     case 2 :printf("options");break;
                 }
             }
         }
+        if(stop)
+            break;
         // affichage et render
         afficherMenu(win,rend,bouttons,text);
-
         // wait to have 60 fps
         SDL_Delay(1000/60);
     }

@@ -13,7 +13,6 @@
 typedef enum etat
 {
     ENCOURS,
-    GAGNE,
     PERDU,
 }etat;
 
@@ -24,6 +23,7 @@ typedef struct etatJeux
     int tentative;
     int curseur;
     int tempsReflexion;
+    int score;
     char mot[11];
     char decouvert[11];
     char evaluation[7][11];
@@ -49,7 +49,7 @@ void afficher(SDL_Rect rectangles[],SDL_Renderer* rend,etatJeux* monEtat,SDL_Tex
 void initializerTextures(SDL_Renderer* rend,SDL_Texture** rondJaune,SDL_Texture* lettres[],TTF_Font *font);
 
 // change l'etat de la partie en cas de perte ou victoire
-void changerEtat(etatJeux* monEtat);
+void changerEtat(etatJeux* monEtat,options* mesOptions);
 
 // convertie un caractere utf8 en ascci en enlevant tous les cracteres non desire
 char utf8EnAscii(char utf8[]);

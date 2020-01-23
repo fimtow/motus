@@ -10,7 +10,7 @@ typedef struct options
     int difficulte;
 }options;
 //demare le jeux
-void jeux(SDL_Window* win,SDL_Renderer* rend,TTF_Font *font,options* mesOptions);
+void jeux(SDL_Window* win,SDL_Renderer* rend,TTF_Font *font,options* mesOptions,int* stop);
 
 // initialise les rectangles et textures du menu
 void initializerMenu(SDL_Rect bouttons[],SDL_Texture* text[],TTF_Font *font,SDL_Renderer* rend);
@@ -24,3 +24,4 @@ SDL_Rect ajusterText(SDL_Rect rect,SDL_Texture* text);
 // determine quel boutton est selectione
 int bouttonSelectione(SDL_Rect rect[]);
 
+void votreHighscore(int score,int* stop);

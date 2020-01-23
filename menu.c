@@ -11,16 +11,15 @@
 #include "gui.h"
 
 //demare le jeux
-void jeux(SDL_Window* win,SDL_Renderer* rend,TTF_Font *font,options* mesOptions)
+void jeux(SDL_Window* win,SDL_Renderer* rend,TTF_Font *font,options* mesOptions,int* stop)
 {
     // initialisation du dictionnaire !!! ya probleme ici
     char dictionnaire[DICTIO][38];
-    chargerDictionnaire(dictionnaire);
+    //chargerDictionnaire(dictionnaire);
 
     // initialisation de l'etat du jeux
     etatJeux* monEtat = (etatJeux*)malloc(sizeof(etatJeux));
     initializerEtatJeux(monEtat,mesOptions);
-    printf("%s",monEtat->mot);
 
     // initialisation des textures et rectangles (plus le curseur et le rectangle tentative d'ou le +2)
     SDL_Rect rectangles[monEtat->taille*7+2];
@@ -47,6 +46,8 @@ void jeux(SDL_Window* win,SDL_Renderer* rend,TTF_Font *font,options* mesOptions)
             if (event.type == SDL_QUIT)
             {
                 monEtat->etatPartie = PERDU;
+                *stop = 1;
+                break;
             }
             // clique sur le boutton entrer
             else if(event.type == SDL_KEYDOWN && event.key.keysym.scancode == SDL_SCANCODE_RETURN)
@@ -70,15 +71,19 @@ void jeux(SDL_Window* win,SDL_Renderer* rend,TTF_Font *font,options* mesOptions)
         // mise a jour de l'etat du jeux
         miseAjour(lettre,monEtat,dictionnaire);
 
+        // mise a jour de l'etat de la partie
+        changerEtat(monEtat,mesOptions);
+        if(monEtat->etatPartie == PERDU)
+            break;
         // affichage et render
         afficher(rectangles,rend,monEtat,lettres,rondJaune,font);
 
-        // mise a jour de l'etat de la partie
-        changerEtat(monEtat);
         // ajustement du FPS
         SDL_Delay(1000/60);
 
     }
+    if(!*stop)
+        votreHighscore(monEtat->score,stop);
 }
 
 // initialise les rectangles et textures du menu
@@ -152,4 +157,10 @@ int bouttonSelectione(SDL_Rect rect[])
             return i;
     }
     return 3;
+}
+
+// affiche le score a l'utilisateur et demande de le sauvegarder
+void votreHighscore(int score,int* stop)
+{
+    printf("hello world");
 }

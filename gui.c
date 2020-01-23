@@ -39,6 +39,7 @@ void initializerEtatJeux(etatJeux* monEtat,options* mesOptions)
     //mesOptions->tempsReflexion*60
     monEtat->tentative = 1;
     monEtat->curseur = 0;
+    monEtat->score = 0;
     genererMot(monEtat->mot,monEtat->taille);
     monEtat->etatPartie = ENCOURS;
     for(int i=0;i<7;i++)
@@ -150,7 +151,7 @@ void initializerTextures(SDL_Renderer* rend,SDL_Texture** rondJaune,SDL_Texture*
 }
 
 // change l'etat de la partie en cas de perte ou victoire
-void changerEtat(etatJeux* monEtat)
+void changerEtat(etatJeux* monEtat,options* mesOptions)
 {
     static int initializerVrai = 0;
     static char vrai[11];
@@ -162,13 +163,23 @@ void changerEtat(etatJeux* monEtat)
     if(monEtat->tentative>7)
     {
         if(strcmp(monEtat->evaluation[monEtat->tentative-2],vrai))
+        {
             monEtat->etatPartie = PERDU;
+        }
         else
-            monEtat->etatPartie = GAGNE;
+        {
+            int temp = monEtat->score+1;
+            initializerEtatJeux(monEtat,mesOptions);
+            monEtat->score = temp;
+            afficherAide(monEtat);
+        }
     }
     else if(!strcmp(monEtat->evaluation[monEtat->tentative-2],vrai))
     {
-        monEtat->etatPartie = GAGNE;
+        int temp = monEtat->score+1;
+        initializerEtatJeux(monEtat,mesOptions);
+        monEtat->score = temp;
+        afficherAide(monEtat);
     }
 }
 
