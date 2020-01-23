@@ -196,12 +196,12 @@ char utf8EnAscii(char utf8[])
 }
 
 // mise a jour de l'etat du jeux
-void miseAjour(char lettre,etatJeux* monEtat,char dictionnaire[])
+void miseAjour(char lettre,etatJeux* monEtat,char** dictionnaire,int tailleDictio)
 {
     // cas entrer
     if(lettre == 0)
     {
-        if(motValable(&(monEtat->input[monEtat->tentative-1][0]),monEtat->taille,monEtat->mot[0],dictionnaire))
+        if(motValable(&(monEtat->input[monEtat->tentative-1][0]),monEtat->taille,monEtat->mot[0],dictionnaire,tailleDictio))
             comparer(&(monEtat->input[monEtat->tentative-1][0]),monEtat->mot,&(monEtat->evaluation[monEtat->tentative-1][0]),monEtat->taille);
         monEtat->tentative++;
         monEtat->curseur = 0;

@@ -44,25 +44,25 @@ void initializerMot(char mot[],char vf,int taille)
 }
 
 // verifie si l'input et un mot valable (a la meme nombre de lettres,la meme premiere lettre, fait partie du dictionnaire francais etc..)
-int motValable(char input[],int taille,char premierChar,char dictio[])
+int motValable(char input[],int taille,char premierChar,char** dictio,int tailleDictio)
 {
     if((input[0] != premierChar) || strlen(input)<taille)
         return 0;
     // recherche dichotomique du mot dans le dictionnaire
     int binf = 0;
-    int bsup = DICTIO-1;
+    int bsup = tailleDictio-1;
     int moy = (bsup+binf)/2;
 
-    while(binf<=bsup && strcmp(dictio+moy*30,input) != 0)
+    while(binf<=bsup && strcmp(dictio[moy],input) != 0)
     {
 
-        if(strcmp(dictio+moy*30,input)<0)
+        if(strcmp(dictio[moy],input)<0)
             binf = moy+1;
         else
             bsup = moy-1;
         moy = (bsup+binf)/2;
     }
-    if(strcmp(dictio+moy*30,input) == 0)
+    if(strcmp(dictio[moy],input) == 0)
         return 1;
     else
         return 0;

@@ -33,12 +33,18 @@
 	<time.h>
 	"game.h"
 
-1579465807 source:c:\users\abdessamad\desktop\motus\main.c
+1579791880 source:c:\users\abdessamad\desktop\motus\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	<SDL2/SDL_timer.h>
 	"jeux.h"
 	"mots.h"
+	"menu.h"
+	"gui.h"
 
 1579386909 c:\users\abdessamad\desktop\motus\game.h
 
@@ -58,18 +64,18 @@
 
 1579700179 d:\projet c\motus\jeux.h
 
-1579464671 source:c:\users\abdessamad\desktop\motus\jeux.c
+1579798790 source:c:\users\abdessamad\desktop\motus\jeux.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	<time.h>
 	"jeux.h"
 
-1579464723 c:\users\abdessamad\desktop\motus\jeux.h
+1579798856 c:\users\abdessamad\desktop\motus\jeux.h
 
-1579466304 c:\users\abdessamad\desktop\motus\mots.h
+1579797315 c:\users\abdessamad\desktop\motus\mots.h
 
-1579466575 source:c:\users\abdessamad\desktop\motus\mots.c
+1579800596 source:c:\users\abdessamad\desktop\motus\mots.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -103,6 +109,36 @@
 1579783640 d:\projet c\motus\menu.h
 
 1579783018 source:d:\projet c\motus\menu.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	<SDL2/SDL_timer.h>
+	"jeux.h"
+	"mots.h"
+	"menu.h"
+	"gui.h"
+
+1579798904 source:c:\users\abdessamad\desktop\motus\gui.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	<SDL2/SDL_timer.h>
+	"menu.h"
+	"gui.h"
+	"jeux.h"
+
+1579791880 c:\users\abdessamad\desktop\motus\menu.h
+
+1579798086 c:\users\abdessamad\desktop\motus\gui.h
+
+1579800478 source:c:\users\abdessamad\desktop\motus\menu.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
