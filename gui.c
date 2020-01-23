@@ -151,7 +151,7 @@ void initializerTextures(SDL_Renderer* rend,SDL_Texture** rondJaune,SDL_Texture*
 }
 
 // change l'etat de la partie en cas de perte ou victoire
-void changerEtat(etatJeux* monEtat,options* mesOptions)
+void changerEtat(etatJeux* monEtat,options* mesOptions,char** dictionnaire)
 {
     static int initializerVrai = 0;
     static char vrai[11];
@@ -172,6 +172,13 @@ void changerEtat(etatJeux* monEtat,options* mesOptions)
             initializerEtatJeux(monEtat,mesOptions);
             monEtat->score = temp;
             afficherAide(monEtat);
+                // initialisation du dictionnaire
+            free(dictionnaire);
+            int nbr=tailleDictionnaire(monEtat->mot[0]);
+            dictionnaire= (char **)malloc(nbr*sizeof(char *)) ;
+            for (int i=0 ; i<nbr ; i++)
+                dictionnaire[i] = (char *)malloc(11*sizeof(char)) ;
+            chargerDictionnaire(dictionnaire,monEtat->mot[0]);
         }
     }
     else if(!strcmp(monEtat->evaluation[monEtat->tentative-2],vrai))
@@ -180,6 +187,12 @@ void changerEtat(etatJeux* monEtat,options* mesOptions)
         initializerEtatJeux(monEtat,mesOptions);
         monEtat->score = temp;
         afficherAide(monEtat);
+        free(dictionnaire);
+        int nbr=tailleDictionnaire(monEtat->mot[0]);
+        dictionnaire= (char **)malloc(nbr*sizeof(char *)) ;
+        for (int i=0 ; i<nbr ; i++)
+            dictionnaire[i] = (char *)malloc(11*sizeof(char)) ;
+        chargerDictionnaire(dictionnaire,monEtat->mot[0]);
     }
 }
 
@@ -228,6 +241,7 @@ void miseAjour(char lettre,etatJeux* monEtat,char** dictionnaire,int tailleDicti
         monEtat->tentative++;
         monEtat->curseur = 0;
         monEtat->tempsReflexion = TEMPSREF;
+        afficherAide(monEtat);
     }
 }
 
