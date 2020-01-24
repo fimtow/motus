@@ -33,7 +33,7 @@
 	<time.h>
 	"game.h"
 
-1579791880 source:c:\users\abdessamad\desktop\motus\main.c
+1579880052 source:c:\users\abdessamad\desktop\motus\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -64,18 +64,18 @@
 
 1579804946 d:\projet c\motus\jeux.h
 
-1579798790 source:c:\users\abdessamad\desktop\motus\jeux.c
+1579880052 source:c:\users\abdessamad\desktop\motus\jeux.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	<time.h>
 	"jeux.h"
 
-1579798856 c:\users\abdessamad\desktop\motus\jeux.h
+1579880052 c:\users\abdessamad\desktop\motus\jeux.h
 
-1579797315 c:\users\abdessamad\desktop\motus\mots.h
+1579880052 c:\users\abdessamad\desktop\motus\mots.h
 
-1579800596 source:c:\users\abdessamad\desktop\motus\mots.c
+1579880052 source:c:\users\abdessamad\desktop\motus\mots.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -121,7 +121,7 @@
 	"menu.h"
 	"gui.h"
 
-1579798904 source:c:\users\abdessamad\desktop\motus\gui.c
+1579880052 source:c:\users\abdessamad\desktop\motus\gui.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -134,11 +134,11 @@
 	"gui.h"
 	"jeux.h"
 
-1579791880 c:\users\abdessamad\desktop\motus\menu.h
+1579880052 c:\users\abdessamad\desktop\motus\menu.h
 
-1579798086 c:\users\abdessamad\desktop\motus\gui.h
+1579880052 c:\users\abdessamad\desktop\motus\gui.h
 
-1579800478 source:c:\users\abdessamad\desktop\motus\menu.c
+1579880052 source:c:\users\abdessamad\desktop\motus\menu.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -150,4 +150,13 @@
 	"mots.h"
 	"menu.h"
 	"gui.h"
+
+1579879179 source:c:\users\abdessamad\desktop\motus\highscore.c
+	<stdio.h>
+	<stdlib.h>
+	"highScore.h"
+
+1579879216 c:\users\abdessamad\desktop\motus\highscore.h
+	<stdio.h>
+	<stdlib.h>
 
