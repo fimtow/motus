@@ -91,7 +91,7 @@
 	<time.h>
 	"mots.h"
 
-1579868712 source:d:\projet c\motus\gui.c
+1579870298 source:d:\projet c\motus\gui.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -106,7 +106,7 @@
 
 1579870053 d:\projet c\motus\gui.h
 
-1579866713 d:\projet c\motus\menu.h
+1579870622 d:\projet c\motus\menu.h
 
 1579869876 source:d:\projet c\motus\menu.c
 	<stdio.h>

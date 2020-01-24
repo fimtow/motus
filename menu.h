@@ -25,4 +25,4 @@ SDL_Rect ajusterText(SDL_Rect rect,SDL_Texture* text);
 int bouttonSelectione(SDL_Rect rect[]);
 
 // page pour enregistrer son score
-void votreScore(int score,int* stop);
+void votreScore(int score,int* stop,char mot[]);
