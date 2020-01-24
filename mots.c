@@ -125,3 +125,12 @@ int tailleDictionnaire(char a)
         case 'z': return 560;
     }
 }
+char** initializerDictionnaire(char** dictionnaire,char lettre,int* nbr)
+{
+    *nbr=tailleDictionnaire(lettre);
+    dictionnaire= (char **)malloc(*nbr*sizeof(char *)) ;
+    for (int i=0 ; i<*nbr ; i++)
+        dictionnaire[i] = (char *)malloc(11*sizeof(char)) ;
+    chargerDictionnaire(dictionnaire,lettre);
+    return dictionnaire;
+}

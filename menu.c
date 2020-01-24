@@ -13,18 +13,14 @@
 //demare le jeux
 void jeux(SDL_Window* win,SDL_Renderer* rend,TTF_Font *font,options* mesOptions,int* stop)
 {
-    int i;
     // initialisation de l'etat du jeux
     etatJeux* monEtat = (etatJeux*)malloc(sizeof(etatJeux));
     initializerEtatJeux(monEtat,mesOptions);
     printf("%s",monEtat->mot);
     // initialisation du dictionnaire
-    char **dictionnaire;
-    int nbr=tailleDictionnaire(monEtat->mot[0]);
-    dictionnaire= (char **)malloc(nbr*sizeof(char *)) ;
-    for (i=0 ; i<nbr ; i++)
-        dictionnaire[i] = (char *)malloc(11*sizeof(char)) ;
-    chargerDictionnaire(dictionnaire,monEtat->mot[0]);
+    int nbr;
+    char **dictionnaire = initializerDictionnaire(dictionnaire,monEtat->mot[0],&nbr);
+
 
     // initialisation des textures et rectangles (plus le curseur et le rectangle tentative d'ou le +2)
     SDL_Rect rectangles[monEtat->taille*7+2];
@@ -77,7 +73,7 @@ void jeux(SDL_Window* win,SDL_Renderer* rend,TTF_Font *font,options* mesOptions,
         miseAjour(lettre,monEtat,dictionnaire,nbr);
 
         // mise a jour de l'etat de la partie
-        changerEtat(monEtat,mesOptions,dictionnaire);
+        changerEtat(monEtat,mesOptions,&dictionnaire,&nbr);
         if(monEtat->etatPartie == PERDU)
             break;
         // affichage et render
@@ -167,6 +163,7 @@ int bouttonSelectione(SDL_Rect rect[])
 // affiche le score a l'utilisateur et demande de le sauvegarder
 void votreScore(int score,int* stop)
 {
+    int sortir = 0;
     while(!*stop)
     {
         // process events
@@ -177,7 +174,11 @@ void votreScore(int score,int* stop)
             {
                 *stop = 1;
             }
+            if(event.type == SDL_KEYDOWN)
+                sortir = 1;
         }
+        if(sortir)
+            break;
         SDL_SetRenderDrawColor(rend,241,196,15,255);
         SDL_RenderClear(rend);
         afficherText("Votre score est :",20,100,4);
