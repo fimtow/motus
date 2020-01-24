@@ -1,6 +1,5 @@
 alveolaire
 antiquaire
-baudelaire
 capillaire
 cartulaire
 centimetre
@@ -20,9 +19,6 @@ lucernaire
 medullaire
 mensongere
 mercenaire
-middleware
-migratoire
-montmartre
 pecuniaire
 presbytere
 procureure
@@ -108,7 +104,6 @@ provisoire
 repertoire
 secondaire
 superieure
-angleterre
 comprendre
 enregistre
 financiere

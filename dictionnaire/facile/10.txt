@@ -30,7 +30,6 @@ frequenter
 frontalier
 fructifier
 galvaniser
-gloucester
 grappiller
 handicaper
 harmoniser
@@ -82,7 +81,6 @@ ressembler
 ressourcer
 reutiliser
 saisonnier
-schweitzer
 simplifier
 solliciter
 sourciller

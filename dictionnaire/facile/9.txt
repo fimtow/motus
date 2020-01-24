@@ -59,12 +59,9 @@ jardinier
 justicier
 justifier
 kidnapper
-lavoisier
 legaliser
 legiferer
 legitimer
-leicester
-lemercier
 licencier
 localiser
 maitriser
@@ -84,7 +81,6 @@ parrainer
 patienter
 patissier
 peaufiner
-pelletier
 penaliser
 perpetrer
 perpetuer
@@ -92,7 +88,6 @@ persister
 persuader
 perturber
 petrolier
-plaidoyer
 planifier
 polariser
 polyester
@@ -180,4 +175,3 @@ valoriser
 vancouver
 vehiculer
 visionner
-webmaster

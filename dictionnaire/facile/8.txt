@@ -5,7 +5,6 @@ basculer
 belanger
 berenger
 berliner
-berthier
 betisier
 bonifier
 bouclier
@@ -93,13 +92,9 @@ heberger
 heritier
 horloger
 hotelier
-houllier
 huissier
 humilier
-jennifer
-leinster
 liquider
-marinier
 melanger
 mepriser
 messager
@@ -204,13 +199,10 @@ retracer
 revolver
 revoquer
 riposter
-roadster
-sabatier
 saladier
 sanglier
 savourer
 schroder
-schuller
 seconder
 signaler
 souffler
@@ -236,5 +228,4 @@ trancher
 trembler
 troubler
 vacciner
-vaciller
 verifier
