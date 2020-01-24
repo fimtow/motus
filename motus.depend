@@ -77,7 +77,7 @@
 
 1579890120 c:\users\abdessamad\desktop\motus\mots.h
 
-1579889562 source:c:\users\abdessamad\desktop\motus\mots.c
+1579891538 source:c:\users\abdessamad\desktop\motus\mots.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -124,7 +124,7 @@
 	"gui.h"
 	"parametre.h"
 
-1579889562 source:c:\users\abdessamad\desktop\motus\gui.c
+1579891528 source:c:\users\abdessamad\desktop\motus\gui.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -155,12 +155,12 @@
 	"gui.h"
 	"parametre.h"
 
-1579889562 source:c:\users\abdessamad\desktop\motus\highscore.c
+1579889982 source:c:\users\abdessamad\desktop\motus\highscore.c
 	<stdio.h>
 	<stdlib.h>
 	"highScore.h"
 
-1579889562 c:\users\abdessamad\desktop\motus\highscore.h
+1579889922 c:\users\abdessamad\desktop\motus\highscore.h
 
 1579887613 source:d:\projet c\motus\highscore.c
 	<stdio.h>

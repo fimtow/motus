@@ -3,8 +3,9 @@
 #include <string.h>
 #include <time.h>
 #include "mots.h"
+// ajout de taille de modulo
 void genererMot(char mot[],int taille,int mod)
-{   mod=100;
+{
     srand(time(NULL));
     int r = rand()%mod;
     char liste[taille+1];
