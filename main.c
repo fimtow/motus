@@ -41,8 +41,8 @@ int main(int argc, char** argv)
                 switch(b)
                 {
                     case 0 :jeux(win,rend,font,mesOptions,&stop);break;
-                    case 1 :printf("hightscore");break;
-                    case 2 :printf("options");break;
+                    case 1 :menuHighscore(&stop);break;
+                    case 2 :menuOptions(mesOptions,&stop);break;
                 }
             }
         }

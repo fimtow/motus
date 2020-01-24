@@ -11,7 +11,7 @@
 	<stdlib.h>
 	"game.h"
 
-1579867283 source:d:\projet c\motus\main.c
+1579882559 source:d:\projet c\motus\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -91,7 +91,7 @@
 	<time.h>
 	"mots.h"
 
-1579870298 source:d:\projet c\motus\gui.c
+1579882087 source:d:\projet c\motus\gui.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -104,11 +104,11 @@
 	"gui.h"
 	"jeux.h"
 
-1579870053 d:\projet c\motus\gui.h
+1579878986 d:\projet c\motus\gui.h
 
-1579870622 d:\projet c\motus\menu.h
+1579882692 d:\projet c\motus\menu.h
 
-1579869876 source:d:\projet c\motus\menu.c
+1579882125 source:d:\projet c\motus\menu.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>

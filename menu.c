@@ -83,6 +83,7 @@ void jeux(SDL_Window* win,SDL_Renderer* rend,TTF_Font *font,options* mesOptions,
         SDL_Delay(1000/60);
 
     }
+    SDL_StopTextInput();
     if(!*stop)
         votreScore(monEtat->score,stop,monEtat->mot);
 }
@@ -174,7 +175,7 @@ void votreScore(int score,int* stop,char mot[])
             {
                 *stop = 1;
             }
-            if(event.type == SDL_KEYDOWN)
+            else if(event.type == SDL_KEYDOWN)
                 sortir = 1;
         }
         if(sortir)
@@ -187,6 +188,59 @@ void votreScore(int score,int* stop,char mot[])
         char scores[10];
         sprintf(scores, "%d",score);
         afficherText(scores,300,350,4);
+        SDL_RenderPresent(rend);
+    }
+}
+
+void menuOptions(options* mesOptions,int* stop)
+{
+    int sortir = 0;
+    while(!*stop)
+    {
+        // process events
+        SDL_Event event;
+        while(SDL_PollEvent(&event))
+        {
+            if (event.type == SDL_QUIT)
+            {
+                *stop = 1;
+            }
+            else if(event.type == SDL_KEYDOWN)
+                sortir = 1;
+        }
+        if(sortir)
+            break;
+        SDL_SetRenderDrawColor(rend,241,196,15,255);
+        SDL_RenderClear(rend);
+        afficherText("Options",100,10,5);
+        afficherText("Difficulté",10,130,3);
+        afficherText("Nbr lettres",10,190,3);
+        afficherText("temps",10,250,3);
+        afficherText("Sons",10,310,3);
+        SDL_RenderPresent(rend);
+    }
+}
+void menuHighscore(int* stop)
+{
+    int sortir = 0;
+    while(!*stop)
+    {
+        // process events
+        SDL_Event event;
+        while(SDL_PollEvent(&event))
+        {
+            if (event.type == SDL_QUIT)
+            {
+                *stop = 1;
+            }
+            else if(event.type == SDL_KEYDOWN)
+                sortir = 1;
+        }
+        if(sortir)
+            break;
+        SDL_SetRenderDrawColor(rend,241,196,15,255);
+        SDL_RenderClear(rend);
+        afficherText("Highscore",100,10,5);
         SDL_RenderPresent(rend);
     }
 }

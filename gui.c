@@ -277,3 +277,44 @@ void afficherText(char text[],int x,int y,int taille)
     SDL_FreeSurface(surface);
     SDL_DestroyTexture(texture);
 }
+
+void afficherParametres(char options[],int nbop,int longueur,int* etat,int x,int y,int w,int h,int clique)
+{
+    SDL_Surface* surface = IMG_Load("ressources/fleche.png");
+    SDL_Texture* texture = SDL_CreateTextureFromSurface(rend,surface);
+    SDL_Rect rectangle;
+    rectangle.w = w;
+    rectangle.h = h;
+    SDL_Rect fleche;
+    fleche.w = fleche.h = h;
+    fleche.x = x;
+    fleche.y = y;
+    rectangle.y = y;
+    rectangle.x = x+h+10;
+    SDL_RenderCopyEx(rend,texture,NULL,&fleche,180,NULL,SDL_FLIP_VERTICAL);
+    SDL_SetRenderDrawColor(rend,41,128,185,255);
+    SDL_RenderFillRect(rend,&rectangle);
+    fleche.x = rectangle.x + w + 10;
+    SDL_RenderCopy(rend,texture,NULL,&fleche);
+    if(clique)
+    {
+        int posx;
+        int posy;
+        SDL_GetMouseState(&posx,&posy);
+        if(posx>=x && posx<=x+h && posy>=y && posy<=y+h)
+        {
+            (*etat)--;
+            if(*etat<0)
+                *etat = nbop-1;
+        }
+        else if(posx>=fleche.x && posx<=fleche.x+h && posy>=y && posy<=y+h)
+        {
+            (*etat)++;
+            if(*etat>=nbop)
+                *etat = 0;
+        }
+    }
+    afficherText(&options[longueur*(*etat)],rectangle.x+w/4,rectangle.y,2);
+    SDL_DestroyTexture(texture);
+    SDL_FreeSurface(surface);
+}

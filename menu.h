@@ -26,3 +26,9 @@ int bouttonSelectione(SDL_Rect rect[]);
 
 // page pour enregistrer son score
 void votreScore(int score,int* stop,char mot[]);
+
+// menu highscore
+void menuHighscore(int* stop);
+
+// menu options
+void menuOptions(options* mesOptions,int* stop);

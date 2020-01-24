@@ -63,5 +63,8 @@ void miseAjour(char lettre,etatJeux* monEtat,char** dictionnaire,int tailleDicti
 // affiche a chaque tentative un aide(la premiere fois la premiere lettre et une autre au hazard, et par la suite les lettres decouvertes)
 void afficherAide(etatJeux* monEtat);
 
-//fonction qui affiche du text
+// fonction qui affiche du text
 void afficherText(char text[],int x,int y,int taille);
+
+// fonction qui affiche les parametres reglables
+void afficherParametres(char options[],int nbop,int longueur,int* etat,int x,int y,int w,int h,int clique);
