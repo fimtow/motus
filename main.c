@@ -9,7 +9,7 @@
 #include "mots.h"
 #include "menu.h"
 #include "gui.h"
-
+#include "parametre.h"
 
 int main(int argc, char** argv)
 {
@@ -19,6 +19,7 @@ int main(int argc, char** argv)
 
     // initialisation des rectangles et textures
     options* mesOptions = (options*)malloc(sizeof(options));
+
     SDL_Rect bouttons[4];
     SDL_Texture* text[4];
     initializerMenu(bouttons,text,font,rend);

@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "parametre.h"
+#include "menu.h"
 void chargerParametre(char* m,int* t)
 {
     FILE* f = fopen(m,"r");
@@ -22,4 +23,8 @@ void sauvegarderParametre(char* m,int difficulte,int nombresLettres ,int sons,in
      fprintf(f,"%d %d %d %d\n",difficulte,nombresLettres,sons,temps);
 
     fclose(f);
+}
+void affecterOptions(options* mesOptions)
+{
+
 }
