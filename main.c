@@ -53,7 +53,7 @@ int main(int argc, char** argv)
         // wait to have 60 fps
         SDL_Delay(1000/60);
     }
-
+    printf("fermeture correcte");
     // nettoyage et fermeture de SDL
     fermerSDL(win,rend,font);
 

@@ -88,7 +88,7 @@ void jeux(SDL_Window* win,SDL_Renderer* rend,TTF_Font *font,options* mesOptions,
 
     }
     if(!*stop)
-        votreHighscore(monEtat->score,stop);
+        votreScore(monEtat->score,stop);
 }
 
 // initialise les rectangles et textures du menu
@@ -165,7 +165,25 @@ int bouttonSelectione(SDL_Rect rect[])
 }
 
 // affiche le score a l'utilisateur et demande de le sauvegarder
-void votreHighscore(int score,int* stop)
+void votreScore(int score,int* stop)
 {
-    printf("hello world");
+    while(!*stop)
+    {
+        // process events
+        SDL_Event event;
+        while(SDL_PollEvent(&event))
+        {
+            if (event.type == SDL_QUIT)
+            {
+                *stop = 1;
+            }
+        }
+        SDL_SetRenderDrawColor(rend,241,196,15,255);
+        SDL_RenderClear(rend);
+        afficherText("Votre score est :",20,100,4);
+        char scores[10];
+        sprintf(scores, "%d",score);
+        afficherText(scores,300,250,4);
+        SDL_RenderPresent(rend);
+    }
 }
