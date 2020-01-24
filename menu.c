@@ -9,7 +9,7 @@
 #include "mots.h"
 #include "menu.h"
 #include "gui.h"
-
+#include "parametre.h"
 //demare le jeux
 void jeux(SDL_Window* win,SDL_Renderer* rend,TTF_Font *font,options* mesOptions,int* stop)
 {
@@ -194,11 +194,32 @@ void votreScore(int score,int* stop,char mot[])
 
 void menuOptions(options* mesOptions,int* stop)
 {
+    int t[4];
+    chargerParametre("options.motus",t);
+    char difficulte[3][10];
+    strcpy(&difficulte[0][0],"facile");
+    strcpy(&difficulte[1][0],"moyen");
+    strcpy(&difficulte[2][0],"difficile");
+    char nbrLettres[5][3];
+    strcpy(&nbrLettres[0][0],"6");
+    strcpy(&nbrLettres[1][0],"7");
+    strcpy(&nbrLettres[2][0],"8");
+    strcpy(&nbrLettres[3][0],"9");
+    strcpy(&nbrLettres[4][0],"10");
+    char son[2][4];
+    strcpy(&son[0][0],"ON");
+    strcpy(&son[1][0],"OFF");
+    char tempsReflexion[3][3];
+    strcpy(&tempsReflexion[0][0],"10");
+    strcpy(&tempsReflexion[1][0],"15");
+    strcpy(&tempsReflexion[2][0],"20");
     int sortir = 0;
+    int clique;
     while(!*stop)
     {
         // process events
         SDL_Event event;
+        clique = 0;
         while(SDL_PollEvent(&event))
         {
             if (event.type == SDL_QUIT)
@@ -207,6 +228,8 @@ void menuOptions(options* mesOptions,int* stop)
             }
             else if(event.type == SDL_KEYDOWN)
                 sortir = 1;
+            else if(event.type == SDL_MOUSEBUTTONDOWN)
+                clique = 1;
         }
         if(sortir)
             break;
@@ -214,10 +237,19 @@ void menuOptions(options* mesOptions,int* stop)
         SDL_RenderClear(rend);
         afficherText("Options",100,10,5);
         afficherText("Difficulté",10,130,3);
+        afficherParametres(difficulte,3,10,&t[0],300,130,150,40,clique);
         afficherText("Nbr lettres",10,190,3);
+        afficherParametres(nbrLettres,5,3,&t[1],300,190,150,40,clique);
         afficherText("temps",10,250,3);
+        afficherParametres(tempsReflexion,3,3,&t[3],300,250,150,40,clique);
         afficherText("Sons",10,310,3);
+        afficherParametres(son,2,4,&t[2],300,310,150,40,clique);
         SDL_RenderPresent(rend);
+    }
+    if(!*stop)
+    {
+        sauvegarderParametre("options.motus",t[0],t[1] ,t[2],t[3] );
+        affecterOptions(mesOptions);
     }
 }
 void menuHighscore(int* stop)

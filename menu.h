@@ -8,6 +8,7 @@ typedef struct options
     int tailleMot;
     int tempsReflexion;
     int difficulte;
+    int son;
 }options;
 // demare le jeux
 void jeux(SDL_Window* win,SDL_Renderer* rend,TTF_Font *font,options* mesOptions,int* stop);

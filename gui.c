@@ -33,9 +33,9 @@ void fermerSDL(SDL_Window* win,SDL_Renderer* rend,TTF_Font *font)
 // initialise une variable de type etatJeux
 void initializerEtatJeux(etatJeux* monEtat,options* mesOptions)
 {
-    monEtat->taille = 6;
+    monEtat->taille = mesOptions->tailleMot;
     //mesOptions->tailleMot
-    monEtat->tempsReflexion = TEMPSREF;
+    monEtat->tempsReflexion = mesOptions->tempsReflexion*60;
     //mesOptions->tempsReflexion*60
     monEtat->tentative = 1;
     monEtat->curseur = 0;

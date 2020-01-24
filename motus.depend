@@ -11,7 +11,7 @@
 	<stdlib.h>
 	"game.h"
 
-1579882559 source:d:\projet c\motus\main.c
+1579888069 source:d:\projet c\motus\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -23,6 +23,7 @@
 	"mots.h"
 	"menu.h"
 	"gui.h"
+	"parametre.h"
 
 1579458202 d:\projet c\motus\game.h
 
@@ -91,7 +92,7 @@
 	<time.h>
 	"mots.h"
 
-1579882087 source:d:\projet c\motus\gui.c
+1579892489 source:d:\projet c\motus\gui.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -106,9 +107,9 @@
 
 1579878986 d:\projet c\motus\gui.h
 
-1579882692 d:\projet c\motus\menu.h
+1579888597 d:\projet c\motus\menu.h
 
-1579882125 source:d:\projet c\motus\menu.c
+1579892337 source:d:\projet c\motus\menu.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -120,6 +121,7 @@
 	"mots.h"
 	"menu.h"
 	"gui.h"
+	"parametre.h"
 
 1579880052 source:c:\users\abdessamad\desktop\motus\gui.c
 	<stdio.h>
@@ -159,4 +161,23 @@
 1579879216 c:\users\abdessamad\desktop\motus\highscore.h
 	<stdio.h>
 	<stdlib.h>
+
+1579887613 source:d:\projet c\motus\highscore.c
+	<stdio.h>
+	<stdlib.h>
+	"highScore.h"
+
+1579887643 d:\projet c\motus\highscore.h
+
+1579890619 d:\projet c\motus\parametre.h
+
+1579890627 source:d:\projet c\motus\parametre.c
+	<stdio.h>
+	<stdlib.h>
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	<SDL2/SDL_timer.h>
+	"menu.h"
+	"parametre.h"
 
