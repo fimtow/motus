@@ -15,9 +15,6 @@ int main(int argc, char** argv)
 {
 
     // initialisation de SDL
-    SDL_Window* win;
-    SDL_Renderer* rend;
-    TTF_Font *font;
     initializerSDL(&win,&rend,&font);
 
     // initialisation des rectangles et textures

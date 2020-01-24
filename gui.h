@@ -6,9 +6,12 @@
 #define TAILLEGRILLE 50
 #define TEMPSEC 15
 #define TEMPSREF 60*TEMPSEC
-#define TEMPSX 550
-#define TEMPSY 50
 
+// initialisation des variables globales de SDL
+SDL_Window* win;
+SDL_Renderer* rend;
+TTF_Font *font;
+//SDL_Color blanc = {255,255,255};
 // valeurs que prend l'etat de la partie
 typedef enum etat
 {
@@ -60,4 +63,5 @@ void miseAjour(char lettre,etatJeux* monEtat,char** dictionnaire,int tailleDicti
 // affiche a chaque tentative un aide(la premiere fois la premiere lettre et une autre au hazard, et par la suite les lettres decouvertes)
 void afficherAide(etatJeux* monEtat);
 
-
+//fonction qui affiche du text
+void afficherText(char text[],int x,int y,int taille);

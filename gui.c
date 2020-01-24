@@ -112,20 +112,17 @@ void afficher(SDL_Rect rectangles[],SDL_Renderer* rend,etatJeux* monEtat,SDL_Tex
     SDL_RenderFillRect(rend,&rectangles[(monEtat->taille)*7+1]);
     SDL_SetRenderDrawBlendMode(rend,SDL_BLENDMODE_NONE);
     // affichage du temps restant
-    static SDL_Color white = {255,255,255};
     char temps[10];
+    static SDL_Color blanc = {255,255,255};
     sprintf(temps, "%d",(int)monEtat->tempsReflexion/60);
-    SDL_Surface* surface = TTF_RenderText_Blended(font,temps,white);
-    SDL_Texture* text = SDL_CreateTextureFromSurface(rend, surface);
-    SDL_FreeSurface(surface);
-    SDL_Rect cadre;
-    SDL_QueryTexture(text,NULL,NULL,&cadre.w,&cadre.h);
-    cadre.h /= 7;
-    cadre.w /= 7;
-    cadre.x = TEMPSX;
-    cadre.y = TEMPSY;
-    SDL_RenderCopy(rend,text,NULL,&cadre);
-    SDL_DestroyTexture(text);
+    afficherText(temps,470,150,3);
+    // affichage du score
+    char score[10];
+    sprintf(score, "%d",(int)monEtat->score);
+    afficherText(score,480,350,3);
+    // affichage des texts
+    afficherText("TEMPS :",400,80,3);
+    afficherText("SCORE :",400,280,3);
     SDL_RenderPresent(rend);
 }
 
@@ -133,17 +130,17 @@ void afficher(SDL_Rect rectangles[],SDL_Renderer* rend,etatJeux* monEtat,SDL_Tex
 void initializerTextures(SDL_Renderer* rend,SDL_Texture** rondJaune,SDL_Texture* lettres[],TTF_Font *font)
 {
     // chargement de la texture du rond jaune
-    static SDL_Color white = {255,255,255};
     static SDL_Texture* text;
     SDL_Surface* surface = IMG_Load("ressources/cercle.png");
     *(rondJaune) = SDL_CreateTextureFromSurface(rend,surface);
     // chargement des textures des lettres
     char let[2];
+    static SDL_Color blanc = {255,255,255};
     let[1] = '\0';
     for(int i=0;i<26;i++)
     {
         let[0] = 65+i;
-        surface = TTF_RenderText_Solid(font,let,white);
+        surface = TTF_RenderText_Solid(font,let,blanc);
         text = SDL_CreateTextureFromSurface(rend, surface);
         lettres[i] = text;
     }
@@ -265,4 +262,23 @@ void afficherAide(etatJeux* monEtat)
             monEtat->input[monEtat->tentative-1][i] = monEtat->mot[i];
     }
 
+}
+
+//fonction qui affiche du text
+void afficherText(char text[],int x,int y,int taille)
+{
+    static SDL_Color blanc = {255,255,255};
+    SDL_Surface* surface = TTF_RenderText_Blended(font,text,blanc);
+    SDL_Texture* texture = SDL_CreateTextureFromSurface(rend,surface);
+    SDL_Rect rectangle;
+    rectangle.x = x;
+    rectangle.y = y;
+    SDL_QueryTexture(texture,NULL,NULL,&rectangle.w,&rectangle.h);
+    rectangle.w /= 10;
+    rectangle.h /= 10;
+    rectangle.w *= taille;
+    rectangle.h *= taille;
+    SDL_RenderCopy(rend,texture,NULL,&rectangle);
+    SDL_FreeSurface(surface);
+    SDL_DestroyTexture(texture);
 }
