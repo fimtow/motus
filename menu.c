@@ -10,6 +10,7 @@
 #include "menu.h"
 #include "gui.h"
 #include "parametre.h"
+#include "highScore.h"
 //demare le jeux
 void jeux(SDL_Window* win,SDL_Renderer* rend,TTF_Font *font,options* mesOptions,int* stop)
 {
@@ -85,7 +86,7 @@ void jeux(SDL_Window* win,SDL_Renderer* rend,TTF_Font *font,options* mesOptions,
     }
     SDL_StopTextInput();
     if(!*stop)
-        votreScore(monEtat->score,stop,monEtat->mot);
+        votreScore(monEtat->score,stop,monEtat->mot,mesOptions->difficulte);
 }
 
 // initialise les rectangles et textures du menu
@@ -162,9 +163,33 @@ int bouttonSelectione(SDL_Rect rect[])
 }
 
 // affiche le score a l'utilisateur et demande de le sauvegarder
-void votreScore(int score,int* stop,char mot[])
+void votreScore(int score,int* stop,char mot[],int diff)
 {
+    highScore tableau[7];
+    for(int i=0;i<7;i++)
+        tableau[i].sc = NULL;
+    chargerHighScore(tableau,diff+1);
+    int ajouter = 0;
+    int i=0;
+    while(i<7)
+    {
+        if(tableau[i].sc == NULL || score>tableau[i].sc)
+        {
+            ajouter = 1;
+            break;
+        }
+        i++;
+    }
     int sortir = 0;
+    if(ajouter)
+    {
+        SDL_StartTextInput();
+    }
+    char nom[20];
+    nom[0] = '\0';
+    int curseur = 0;
+    char lettreUtf8[32];
+    char lettre = 48;
     while(!*stop)
     {
         // process events
@@ -175,19 +200,41 @@ void votreScore(int score,int* stop,char mot[])
             {
                 *stop = 1;
             }
-            else if(event.type == SDL_KEYDOWN)
+            else if(event.type == SDL_KEYDOWN && event.key.keysym.scancode == SDL_SCANCODE_RETURN)
+            {
+                if(ajouter)
+                    sauvegarderHighScore(nom,score,diff+1);
                 sortir = 1;
+            }
+            else if(event.type == SDL_KEYDOWN && event.key.keysym.scancode == SDL_SCANCODE_DELETE && event.key.keysym.scancode == SDL_SCANCODE_DELETE && curseur>0)
+            {
+                curseur--;
+                nom[curseur] = '\0';
+            }
+            else if(event.type == SDL_TEXTINPUT && curseur < 20)
+            {
+                strcpy(lettreUtf8,event.text.text);
+                lettre = utf8EnAscii(lettreUtf8);
+                nom[curseur] = lettre;
+                nom[curseur+1] = '\0';
+                curseur++;
+            }
         }
         if(sortir)
             break;
         SDL_SetRenderDrawColor(rend,241,196,15,255);
         SDL_RenderClear(rend);
-        afficherText("le mot est :",20,50,3);
-        afficherText(mot,200,120,3);
-        afficherText("Votre score est :",20,200,4);
+        afficherText("le mot est :",20,0,3);
+        afficherText(mot,330,0,3);
+        afficherText("Votre score est :",20,100,4);
         char scores[10];
         sprintf(scores, "%d",score);
-        afficherText(scores,300,350,4);
+        afficherText(scores,300,200,4);
+        if(ajouter)
+        {
+            afficherText("Entrer votre nom :",50,300,3);
+            afficherText(nom,160,380,3);
+        }
         SDL_RenderPresent(rend);
     }
 }
@@ -252,9 +299,13 @@ void menuOptions(options* mesOptions,int* stop)
         affecterOptions(mesOptions);
     }
 }
-void menuHighscore(int* stop)
+void menuHighscore(int* stop,int diff)
 {
     int sortir = 0;
+    highScore tableau[7];
+    for(int i=0;i<7;i++)
+        tableau[i].sc = -1;
+    chargerHighScore(tableau,diff+1);
     while(!*stop)
     {
         // process events
@@ -272,7 +323,16 @@ void menuHighscore(int* stop)
             break;
         SDL_SetRenderDrawColor(rend,241,196,15,255);
         SDL_RenderClear(rend);
-        afficherText("Highscore",100,10,5);
+        afficherText("Highscore",100,0,5);
+        int i=0;
+        while(tableau[i].sc != -1 && i<7)
+        {
+            afficherText(tableau[i].nom,10,100+50*i,3);
+            char score[10];
+            sprintf(score, "%d",tableau[i].sc);
+            afficherText(score,500,100+50*i,3);
+            i++;
+        }
         SDL_RenderPresent(rend);
     }
 }

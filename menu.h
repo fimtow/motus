@@ -26,10 +26,10 @@ SDL_Rect ajusterText(SDL_Rect rect,SDL_Texture* text);
 int bouttonSelectione(SDL_Rect rect[]);
 
 // page pour enregistrer son score
-void votreScore(int score,int* stop,char mot[]);
+void votreScore(int score,int* stop,char mot[],int diff);
 
 // menu highscore
-void menuHighscore(int* stop);
+void menuHighscore(int* stop,int diff);
 
 // menu options
 void menuOptions(options* mesOptions,int* stop);

@@ -19,6 +19,7 @@ int main(int argc, char** argv)
 
     // initialisation des rectangles et textures
     options* mesOptions = (options*)malloc(sizeof(options));
+    affecterOptions(mesOptions);
 
     SDL_Rect bouttons[4];
     SDL_Texture* text[4];
@@ -42,7 +43,7 @@ int main(int argc, char** argv)
                 switch(b)
                 {
                     case 0 :jeux(win,rend,font,mesOptions,&stop);break;
-                    case 1 :menuHighscore(&stop);break;
+                    case 1 :menuHighscore(&stop,mesOptions->difficulte);break;
                     case 2 :menuOptions(mesOptions,&stop);break;
                 }
             }

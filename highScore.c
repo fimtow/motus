@@ -15,7 +15,6 @@ void chargerHighScore(highScore* t,int diff)
     FILE* f = fopen(m,"r");
     while(!feof(f))
     {
-
         fscanf(f,"%s %d",t[i].nom,&t[i].sc);
         i++;
 
