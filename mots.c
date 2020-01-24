@@ -4,12 +4,12 @@
 #include <time.h>
 #include "mots.h"
 // ajout de taille de modulo
-void genererMot(char mot[],int taille,int mod)
-{
+void genererMot(char mot[],int taille,int diff)
+{   int mod=modulo(taille,diff);
     srand(time(NULL));
     int r = rand()%mod;
     char liste[taille+1];
-    FILE* f = fopen(dictionnaireUtilise(taille,1),"r");
+    FILE* f = fopen(dictionnaireUtilise(taille,diff),"r");
 
     int c=0;
 

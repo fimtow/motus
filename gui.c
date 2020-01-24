@@ -40,7 +40,7 @@ void initializerEtatJeux(etatJeux* monEtat,options* mesOptions)
     monEtat->tentative = 1;
     monEtat->curseur = 0;
     monEtat->score = 0;
-    genererMot(monEtat->mot,monEtat->taille,100);
+    genererMot(monEtat->mot,monEtat->taille,mesOptions->difficulte+1);
     monEtat->etatPartie = ENCOURS;
     for(int i=0;i<7;i++)
     {

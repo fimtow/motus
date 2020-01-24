@@ -34,7 +34,7 @@
 	<time.h>
 	"game.h"
 
-1579889562 source:c:\users\abdessamad\desktop\motus\main.c
+1579900578 source:c:\users\abdessamad\desktop\motus\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -66,18 +66,18 @@
 
 1579804946 d:\projet c\motus\jeux.h
 
-1579889562 source:c:\users\abdessamad\desktop\motus\jeux.c
+1579900578 source:c:\users\abdessamad\desktop\motus\jeux.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	<time.h>
 	"jeux.h"
 
-1579889562 c:\users\abdessamad\desktop\motus\jeux.h
+1579900578 c:\users\abdessamad\desktop\motus\jeux.h
 
-1579890120 c:\users\abdessamad\desktop\motus\mots.h
+1579900815 c:\users\abdessamad\desktop\motus\mots.h
 
-1579891538 source:c:\users\abdessamad\desktop\motus\mots.c
+1579901079 source:c:\users\abdessamad\desktop\motus\mots.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -125,7 +125,7 @@
 	"parametre.h"
 	"highScore.h"
 
-1579891528 source:c:\users\abdessamad\desktop\motus\gui.c
+1579900877 source:c:\users\abdessamad\desktop\motus\gui.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -138,11 +138,11 @@
 	"gui.h"
 	"jeux.h"
 
-1579889562 c:\users\abdessamad\desktop\motus\menu.h
+1579900578 c:\users\abdessamad\desktop\motus\menu.h
 
-1579889562 c:\users\abdessamad\desktop\motus\gui.h
+1579900578 c:\users\abdessamad\desktop\motus\gui.h
 
-1579889562 source:c:\users\abdessamad\desktop\motus\menu.c
+1579900578 source:c:\users\abdessamad\desktop\motus\menu.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -155,13 +155,14 @@
 	"menu.h"
 	"gui.h"
 	"parametre.h"
+	"highScore.h"
 
-1579889982 source:c:\users\abdessamad\desktop\motus\highscore.c
+1579900578 source:c:\users\abdessamad\desktop\motus\highscore.c
 	<stdio.h>
 	<stdlib.h>
 	"highScore.h"
 
-1579889922 c:\users\abdessamad\desktop\motus\highscore.h
+1579900578 c:\users\abdessamad\desktop\motus\highscore.h
 
 1579903318 source:d:\projet c\motus\highscore.c
 	<stdio.h>
@@ -182,9 +183,9 @@
 	"menu.h"
 	"parametre.h"
 
-1579889562 c:\users\abdessamad\desktop\motus\parametre.h
+1579900579 c:\users\abdessamad\desktop\motus\parametre.h
 
-1579889562 source:c:\users\abdessamad\desktop\motus\parametre.c
+1579900579 source:c:\users\abdessamad\desktop\motus\parametre.c
 	<stdio.h>
 	<stdlib.h>
 	<SDL2/SDL.h>
