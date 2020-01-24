@@ -3,10 +3,10 @@
 #include <string.h>
 #include <time.h>
 #include "mots.h"
-void genererMot(char mot[],int taille)
-{
+void genererMot(char mot[],int taille,int mod)
+{   mod=100;
     srand(time(NULL));
-    int r = rand()%100;
+    int r = rand()%mod;
     char liste[taille+1];
     FILE* f = fopen(dictionnaireUtilise(taille,1),"r");
 
@@ -133,4 +133,42 @@ char** initializerDictionnaire(char** dictionnaire,char lettre,int* nbr)
         dictionnaire[i] = (char *)malloc(11*sizeof(char)) ;
     chargerDictionnaire(dictionnaire,lettre);
     return dictionnaire;
+}
+int modulo(int taille,int diff)
+{
+      if(diff==1)
+{
+    switch(taille)
+    {
+        case 6:return 163;
+        case 7:return 205;
+        case 8:return 231;
+        case 9:return 177;
+        case 10:return 101;
+    }
+}
+    if(diff==2)
+{
+    switch(taille)
+    {
+        case 6:return 913;
+        case 7:return 841;
+        case 8:return 187;
+        case 9:return 184;
+        case 10:return 113;
+    }
+}
+    if(diff==3)
+{
+    switch(taille)
+    {
+        case 6:return 71;
+        case 7:return 144;
+        case 8:return 200;
+        case 9:return 139;
+        case 10:return 130;
+    }
+}
+
+
 }

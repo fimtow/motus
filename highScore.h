@@ -5,6 +5,5 @@ typedef struct highScore
     int sc;
 
 }highScore;
-void chargerHighScore(char* f,highScore* t);
-void sauvegarderHighScore(char* f,char* nom,int score);
-
+void chargerHighScore(highScore* t,int diff);
+void sauvegarderHighScore(char* nom,int score,int diff);
