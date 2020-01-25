@@ -32,15 +32,12 @@ void sauvegarderHighScore(char* nom,int score,int diff)
     for(int i=0;i<7;i++)
         tableau[i].sc = -1;
     chargerHighScore(tableau,diff);
-    printf("%d",tableau[0].sc);
-    printf("%d",tableau[1].sc);
     for(int i=6;i>-1;i--)
     {
         if(score<=tableau[i].sc)
             break;
         if(i!=6)
         {
-            printf("%d",tableau[i].sc);
             tableau[i+1].sc = tableau[i].sc;
             strcpy(&tableau[i+1].nom,tableau[i].nom);
         }

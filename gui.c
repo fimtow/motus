@@ -34,9 +34,7 @@ void fermerSDL(SDL_Window* win,SDL_Renderer* rend,TTF_Font *font)
 void initializerEtatJeux(etatJeux* monEtat,options* mesOptions)
 {
     monEtat->taille = mesOptions->tailleMot;
-    //mesOptions->tailleMot
     monEtat->tempsReflexion = mesOptions->tempsReflexion*60;
-    //mesOptions->tempsReflexion*60
     monEtat->tentative = 1;
     monEtat->curseur = 0;
     monEtat->score = 0;
@@ -45,9 +43,9 @@ void initializerEtatJeux(etatJeux* monEtat,options* mesOptions)
     for(int i=0;i<7;i++)
     {
         initializerMot(&monEtat->evaluation[i][0],'F',monEtat->taille);
-        initializerMot(&monEtat->input[i][0],NULL,11);
+        initializerMot(&monEtat->input[i][0],NULL,monEtat->taille);
     }
-    initializerMot(monEtat->decouvert,0,11);
+    initializerMot(monEtat->decouvert,0,monEtat->taille);
     srand(time(NULL));
     int r = rand()%(monEtat->taille-1);
     monEtat->decouvert[0] = 1;

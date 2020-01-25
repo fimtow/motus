@@ -41,6 +41,7 @@ void initializerMot(char mot[],char vf,int taille)
     {
         mot[i] = vf;
     }
+    mot[taille] = '\0';
 }
 
 // verifie si l'input et un mot valable (a la meme nombre de lettres,la meme premiere lettre, fait partie du dictionnaire francais etc..)
