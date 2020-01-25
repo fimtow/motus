@@ -84,16 +84,16 @@
 	<time.h>
 	"mots.h"
 
-1579896656 d:\projet c\motus\mots.h
+1579905462 d:\projet c\motus\mots.h
 
-1579896656 source:d:\projet c\motus\mots.c
+1579905462 source:d:\projet c\motus\mots.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	<time.h>
 	"mots.h"
 
-1579896656 source:d:\projet c\motus\gui.c
+1579905462 source:d:\projet c\motus\gui.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -108,9 +108,9 @@
 
 1579878986 d:\projet c\motus\gui.h
 
-1579900172 d:\projet c\motus\menu.h
+1579905443 d:\projet c\motus\menu.h
 
-1579903313 source:d:\projet c\motus\menu.c
+1579905989 source:d:\projet c\motus\menu.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -164,7 +164,7 @@
 
 1579900578 c:\users\abdessamad\desktop\motus\highscore.h
 
-1579903318 source:d:\projet c\motus\highscore.c
+1579952208 source:d:\projet c\motus\highscore.c
 	<stdio.h>
 	<stdlib.h>
 	"highScore.h"

@@ -167,13 +167,13 @@ void votreScore(int score,int* stop,char mot[],int diff)
 {
     highScore tableau[7];
     for(int i=0;i<7;i++)
-        tableau[i].sc = NULL;
+        tableau[i].sc = -1;
     chargerHighScore(tableau,diff+1);
     int ajouter = 0;
     int i=0;
     while(i<7)
     {
-        if(tableau[i].sc == NULL || score>tableau[i].sc)
+        if(tableau[i].sc == -1 || score>tableau[i].sc)
         {
             ajouter = 1;
             break;

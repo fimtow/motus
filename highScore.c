@@ -29,10 +29,32 @@ void sauvegarderHighScore(char* nom,int score,int diff)
         case 1: strcpy(m,"highScore/1.txt"); break;
         case 2: strcpy(m,"highScore/2.txt"); break;
         case 3: strcpy(m,"highScore/3.txt"); break;
-
     }
-      FILE* f = fopen(m,"a");
-     fprintf(f,"%s %d \n",nom,score);
-
+    highScore tableau[7];
+    for(int i=0;i<7;i++)
+        tableau[i].sc = -1;
+    chargerHighScore(tableau,diff);
+    printf("%d",tableau[0].sc);
+    printf("%d",tableau[1].sc);
+    for(int i=6;i>-1;i--)
+    {
+        if(score<=tableau[i].sc)
+            break;
+        if(i!=6)
+        {
+            printf("%d",tableau[i].sc);
+            tableau[i+1].sc = tableau[i].sc;
+            strcpy(&tableau[i+1].nom,tableau[i].nom);
+        }
+        tableau[i].sc = score;
+        strcpy(&tableau[i].nom,nom);
+    }
+    FILE* f = fopen(m,"w");
+    int i = 0;
+    while(i<7 && tableau[i].sc != -1)
+    {
+        fprintf(f,"%s %d \n",tableau[i].nom,tableau[i].sc);
+        i++;
+    }
     fclose(f);
 }
