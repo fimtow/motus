@@ -206,7 +206,7 @@ void miseAjour(char lettre,etatJeux* monEtat,char** dictionnaire,int tailleDicti
     // cas entrer
     if(lettre == 0)
     {
-        if(motValable(&(monEtat->input[monEtat->tentative-1][0]),monEtat->taille,monEtat->mot[0],dictionnaire,tailleDictio))
+        if(motValable(&(monEtat->input[monEtat->tentative-1][0]),monEtat->taille,monEtat->mot[0],dictionnaire,tailleDictio,monEtat->input,monEtat->tentative))
             comparer(&(monEtat->input[monEtat->tentative-1][0]),monEtat->mot,&(monEtat->evaluation[monEtat->tentative-1][0]),monEtat->taille);
         monEtat->tentative++;
         monEtat->curseur = 0;
