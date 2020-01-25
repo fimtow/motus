@@ -1,7 +1,7 @@
 #define HAUTEUR 480
 #define LARGEUR 640
-#define POSGRILLEX 50
-#define POSGRILLEY 50
+#define POSGRILLEX 40
+#define POSGRILLEY 30
 #define DISTGRILLE 5
 #define TAILLEGRILLE 50
 #define TEMPSEC 15

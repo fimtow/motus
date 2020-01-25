@@ -3,7 +3,7 @@
 #include "highScore.h"
 void chargerHighScore(highScore* t,int diff)
 {
-     char m[16];
+    char m[16];
     switch(diff)
     {
         case 1: strcpy(m,"highScore/1.txt"); break;
@@ -17,8 +17,6 @@ void chargerHighScore(highScore* t,int diff)
     {
         fscanf(f,"%s %d",t[i].nom,&t[i].sc);
         i++;
-
-
     }
     fclose(f);
 }

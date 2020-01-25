@@ -115,14 +115,14 @@ void afficher(SDL_Rect rectangles[],SDL_Renderer* rend,etatJeux* monEtat,SDL_Tex
     char temps[10];
     static SDL_Color blanc = {255,255,255};
     sprintf(temps, "%d",(int)monEtat->tempsReflexion/60);
-    afficherText(temps,470,150,3);
+    afficherText(temps,250,410,3);
     // affichage du score
     char score[10];
     sprintf(score, "%d",(int)monEtat->score);
-    afficherText(score,480,350,3);
+    afficherText(score,570,410,3);
     // affichage des texts
-    afficherText("TEMPS :",400,80,3);
-    afficherText("SCORE :",400,280,3);
+    afficherText("TEMPS :",10,410,3);
+    afficherText("SCORE :",340,410,3);
     SDL_RenderPresent(rend);
 }
 
@@ -314,7 +314,7 @@ void afficherParametres(char options[],int nbop,int longueur,int* etat,int x,int
                 *etat = 0;
         }
     }
-    afficherText(&options[longueur*(*etat)],rectangle.x+w/4,rectangle.y,2);
+    afficherText(&options[longueur*(*etat)],rectangle.x+w/8,rectangle.y,2);
     SDL_DestroyTexture(texture);
     SDL_FreeSurface(surface);
 }

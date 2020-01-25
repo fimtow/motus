@@ -284,13 +284,13 @@ void menuOptions(options* mesOptions,int* stop)
         SDL_RenderClear(rend);
         afficherText("Options",100,10,5);
         afficherText("Difficulté",10,130,3);
-        afficherParametres(difficulte,3,10,&t[0],300,130,150,40,clique);
+        afficherParametres(difficulte,3,10,&t[0],335,140,170,50,clique);
         afficherText("Nbr lettres",10,190,3);
-        afficherParametres(nbrLettres,5,3,&t[1],300,190,150,40,clique);
+        afficherParametres(nbrLettres,5,3,&t[1],335,200,170,50,clique);
         afficherText("temps",10,250,3);
-        afficherParametres(tempsReflexion,3,3,&t[3],300,250,150,40,clique);
+        afficherParametres(tempsReflexion,3,3,&t[3],335,260,170,50,clique);
         afficherText("Sons",10,310,3);
-        afficherParametres(son,2,4,&t[2],300,310,150,40,clique);
+        afficherParametres(son,2,4,&t[2],335,320,170,50,clique);
         SDL_RenderPresent(rend);
     }
     if(!*stop)
