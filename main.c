@@ -16,7 +16,9 @@ int main(int argc, char** argv)
 
     // initialisation de SDL
     initializerSDL(&win,&rend,&font);
-
+    SDL_Surface* icone = IMG_Load("ressources/icone.ico");
+    SDL_SetWindowIcon(win,icone);
+    //SDL_FreeSurface(icone);
     // initialisation des rectangles et textures
     options* mesOptions = (options*)malloc(sizeof(options));
     affecterOptions(mesOptions);

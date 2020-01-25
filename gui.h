@@ -58,7 +58,7 @@ void changerEtat(etatJeux* monEtat,options* mesOptions,char*** dictionnaire,int*
 char utf8EnAscii(char utf8[]);
 
 // mise a jour de l'etat du jeux
-void miseAjour(char lettre,etatJeux* monEtat,char** dictionnaire,int tailleDictio);
+void miseAjour(char lettre,etatJeux* monEtat,char** dictionnaire,int tailleDictio,options* mesOptions);
 
 // affiche a chaque tentative un aide(la premiere fois la premiere lettre et une autre au hazard, et par la suite les lettres decouvertes)
 void afficherAide(etatJeux* monEtat);

@@ -17,7 +17,6 @@ void jeux(SDL_Window* win,SDL_Renderer* rend,TTF_Font *font,options* mesOptions,
     // initialisation de l'etat du jeux
     etatJeux* monEtat = (etatJeux*)malloc(sizeof(etatJeux));
     initializerEtatJeux(monEtat,mesOptions);
-    printf("%s",monEtat->mot);
     // initialisation du dictionnaire
     int nbr;
     char **dictionnaire = initializerDictionnaire(dictionnaire,monEtat->mot[0],&nbr);
@@ -71,13 +70,12 @@ void jeux(SDL_Window* win,SDL_Renderer* rend,TTF_Font *font,options* mesOptions,
             }
         }
         // mise a jour de l'etat du jeux
-        miseAjour(lettre,monEtat,dictionnaire,nbr);
+        miseAjour(lettre,monEtat,dictionnaire,nbr,mesOptions);
 
         // mise a jour de l'etat de la partie
         changerEtat(monEtat,mesOptions,&dictionnaire,&nbr);
         if(monEtat->etatPartie == PERDU)
          {
-             printf("goooo");
              break;
          }
         // affichage et render
@@ -91,7 +89,6 @@ void jeux(SDL_Window* win,SDL_Renderer* rend,TTF_Font *font,options* mesOptions,
     //printf("finfcf");
     if(!*stop)
         votreScore(monEtat->score,stop,monEtat->mot,mesOptions->difficulte);
-    printf("finjeu");
 }
 
 // initialise les rectangles et textures du menu

@@ -154,9 +154,7 @@ void changerEtat(etatJeux* monEtat,options* mesOptions,char*** dictionnaire,int 
     {
         if(strcmp(monEtat->evaluation[monEtat->tentative-2],vrai))
         {
-            printf("perdu");
             monEtat->etatPartie = PERDU;
-            printf("je sort");
         }
         else
         {
@@ -164,7 +162,6 @@ void changerEtat(etatJeux* monEtat,options* mesOptions,char*** dictionnaire,int 
             initializerEtatJeux(monEtat,mesOptions);
             monEtat->score = temp;
             afficherAide(monEtat);
-            printf("%s",monEtat->mot);
             // initialisation du dictionnaire
             free(*dictionnaire);
             *dictionnaire = initializerDictionnaire(*dictionnaire,monEtat->mot[0],nbr);
@@ -176,7 +173,6 @@ void changerEtat(etatJeux* monEtat,options* mesOptions,char*** dictionnaire,int 
         initializerEtatJeux(monEtat,mesOptions);
         monEtat->score = temp;
         afficherAide(monEtat);
-        printf("%s",monEtat->mot);
         // initialisation du dictionnaire
         free(*dictionnaire);
         *dictionnaire = initializerDictionnaire(*dictionnaire,monEtat->mot[0],nbr);
@@ -196,7 +192,7 @@ char utf8EnAscii(char utf8[])
 }
 
 // mise a jour de l'etat du jeux
-void miseAjour(char lettre,etatJeux* monEtat,char** dictionnaire,int tailleDictio)
+void miseAjour(char lettre,etatJeux* monEtat,char** dictionnaire,int tailleDictio,options* mesOptions)
 {
     // cas entrer
     if(lettre == 0)
@@ -205,7 +201,7 @@ void miseAjour(char lettre,etatJeux* monEtat,char** dictionnaire,int tailleDicti
             comparer(&(monEtat->input[monEtat->tentative-1][0]),monEtat->mot,&(monEtat->evaluation[monEtat->tentative-1][0]),monEtat->taille);
         monEtat->tentative++;
         monEtat->curseur = 0;
-        monEtat->tempsReflexion = TEMPSREF;
+        monEtat->tempsReflexion = mesOptions->tempsReflexion*60;
         afficherAide(monEtat);
     }
     // cas del
@@ -227,7 +223,7 @@ void miseAjour(char lettre,etatJeux* monEtat,char** dictionnaire,int tailleDicti
     {
         monEtat->tentative++;
         monEtat->curseur = 0;
-        monEtat->tempsReflexion = TEMPSREF;
+        monEtat->tempsReflexion = mesOptions->tempsReflexion*60;
         afficherAide(monEtat);
     }
 }
