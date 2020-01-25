@@ -148,13 +148,8 @@ void initializerTextures(SDL_Renderer* rend,SDL_Texture** rondJaune,SDL_Texture*
 // change l'etat de la partie en cas de perte ou victoire
 void changerEtat(etatJeux* monEtat,options* mesOptions,char*** dictionnaire,int *nbr)
 {
-    static int initializerVrai = 0;
-    static char vrai[11];
-    if(!initializerVrai)
-    {
-        initializerVrai = 1;
-        initializerMot(vrai,'V',monEtat->taille);
-    }
+    char vrai[11];
+    initializerMot(vrai,'V',monEtat->taille);
     if(monEtat->tentative>7)
     {
         if(strcmp(monEtat->evaluation[monEtat->tentative-2],vrai))
@@ -196,7 +191,7 @@ char utf8EnAscii(char utf8[])
     if(lettre >= 65 && lettre <= 90)
         lettre += 32;
     if(lettre <97 || lettre >122)
-        lettre = 48;
+        lettre = 95;
     return lettre;
 }
 
@@ -220,7 +215,7 @@ void miseAjour(char lettre,etatJeux* monEtat,char** dictionnaire,int tailleDicti
         monEtat->curseur--;
     }
     // cas text
-    else if(lettre != 48)
+    else if(lettre != 95)
     {
         monEtat->input[monEtat->tentative-1][monEtat->curseur] = lettre;
         if(monEtat->curseur<monEtat->taille-1)

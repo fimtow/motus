@@ -39,7 +39,7 @@ void jeux(SDL_Window* win,SDL_Renderer* rend,TTF_Font *font,options* mesOptions,
     while(monEtat->etatPartie == ENCOURS)
     {
         // gestion des evenements
-        lettre = 48;
+        lettre = 95;
         SDL_Event event;
 
         while(SDL_PollEvent(&event))
@@ -58,7 +58,7 @@ void jeux(SDL_Window* win,SDL_Renderer* rend,TTF_Font *font,options* mesOptions,
                 lettre = 0;
             }
             // clique sur le boutton delete
-            else if(event.type == SDL_KEYDOWN && event.key.keysym.scancode == SDL_SCANCODE_DELETE && monEtat->curseur != 0)
+            else if(event.type == SDL_KEYDOWN && (event.key.keysym.scancode == SDL_SCANCODE_DELETE || event.key.keysym.scancode == SDL_SCANCODE_BACKSPACE) && monEtat->curseur != 0)
             {
                 // cela indique a la fonction mise a jour que l'utilisateur a appuye del
                 lettre = 1;
@@ -191,7 +191,7 @@ void votreScore(int score,int* stop,char mot[],int diff)
         SDL_StartTextInput();
     }
     char nom[20];
-    nom[0] = '\0';
+    nom[0] = '_';
     int curseur = 0;
     char lettreUtf8[32];
     char lettre = 48;
@@ -211,7 +211,7 @@ void votreScore(int score,int* stop,char mot[],int diff)
                     sauvegarderHighScore(nom,score,diff+1);
                 sortir = 1;
             }
-            else if(event.type == SDL_KEYDOWN && event.key.keysym.scancode == SDL_SCANCODE_DELETE && event.key.keysym.scancode == SDL_SCANCODE_DELETE && curseur>0)
+            else if(event.type == SDL_KEYDOWN && (event.key.keysym.scancode == SDL_SCANCODE_DELETE || event.key.keysym.scancode == SDL_SCANCODE_BACKSPACE) && curseur>0)
             {
                 curseur--;
                 nom[curseur] = '\0';
