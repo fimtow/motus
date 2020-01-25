@@ -159,7 +159,9 @@ void changerEtat(etatJeux* monEtat,options* mesOptions,char*** dictionnaire,int 
     {
         if(strcmp(monEtat->evaluation[monEtat->tentative-2],vrai))
         {
+            printf("perdu");
             monEtat->etatPartie = PERDU;
+            printf("je sort");
         }
         else
         {

@@ -76,7 +76,10 @@ void jeux(SDL_Window* win,SDL_Renderer* rend,TTF_Font *font,options* mesOptions,
         // mise a jour de l'etat de la partie
         changerEtat(monEtat,mesOptions,&dictionnaire,&nbr);
         if(monEtat->etatPartie == PERDU)
-            break;
+         {
+             printf("goooo");
+             break;
+         }
         // affichage et render
         afficher(rectangles,rend,monEtat,lettres,rondJaune,font);
 
@@ -84,9 +87,11 @@ void jeux(SDL_Window* win,SDL_Renderer* rend,TTF_Font *font,options* mesOptions,
         SDL_Delay(1000/60);
 
     }
-    SDL_StopTextInput();
+    //SDL_StopTextInput();
+    //printf("finfcf");
     if(!*stop)
         votreScore(monEtat->score,stop,monEtat->mot,mesOptions->difficulte);
+    printf("finjeu");
 }
 
 // initialise les rectangles et textures du menu
