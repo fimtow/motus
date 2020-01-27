@@ -6,6 +6,7 @@
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_ttf.h>
 #include <SDL2/SDL_timer.h>
+#include <SDL2/SDL_mixer.h>
 #include "menu.h"
 #include "gui.h"
 #include "jeux.h"
@@ -13,11 +14,16 @@
 // initialise SDL et tous les autres biblio associe
 void initializerSDL(SDL_Window** win,SDL_Renderer** rend,TTF_Font** font)
 {
-    SDL_Init(SDL_INIT_VIDEO|SDL_INIT_TIMER);
+    SDL_Init(SDL_INIT_VIDEO|SDL_INIT_TIMER|SDL_INIT_AUDIO);
     *win = SDL_CreateWindow("Motus",SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED,LARGEUR, HAUTEUR, 0);
     *rend = SDL_CreateRenderer(*win, -1, SDL_RENDERER_ACCELERATED);
     TTF_Init();
     *font = TTF_OpenFont("ressources/police.ttf",200);
+    Mix_OpenAudio(22050,MIX_DEFAULT_FORMAT,2,2048);
+    clique = Mix_LoadWAV("ressources/clique.wav");
+    gagne = Mix_LoadWAV("ressources/gagne.wav");
+    perdu = Mix_LoadWAV("ressources/perdu.wav");
+    generique = Mix_LoadMUS("ressources/motus.wav");
 }
 
 // ferme SDL et libere la memoire
@@ -154,6 +160,8 @@ void changerEtat(etatJeux* monEtat,options* mesOptions,char*** dictionnaire,int 
     {
         if(strcmp(monEtat->evaluation[monEtat->tentative-2],vrai))
         {
+            if(mesOptions->son == 0)
+                Mix_PlayChannel(1,perdu,0);
             monEtat->etatPartie = PERDU;
         }
         else
@@ -165,6 +173,8 @@ void changerEtat(etatJeux* monEtat,options* mesOptions,char*** dictionnaire,int 
             // initialisation du dictionnaire
             free(*dictionnaire);
             *dictionnaire = initializerDictionnaire(*dictionnaire,monEtat->mot[0],nbr);
+            if(mesOptions->son == 0)
+                Mix_PlayChannel(1,gagne,0);
         }
     }
     else if(!strcmp(monEtat->evaluation[monEtat->tentative-2],vrai))
@@ -176,6 +186,8 @@ void changerEtat(etatJeux* monEtat,options* mesOptions,char*** dictionnaire,int 
         // initialisation du dictionnaire
         free(*dictionnaire);
         *dictionnaire = initializerDictionnaire(*dictionnaire,monEtat->mot[0],nbr);
+        if(mesOptions->son == 0)
+            Mix_PlayChannel(1,gagne,0);
     }
 }
 

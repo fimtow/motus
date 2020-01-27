@@ -5,6 +5,7 @@
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_ttf.h>
 #include <SDL2/SDL_timer.h>
+#include <SDL2/SDL_mixer.h>
 #include "jeux.h"
 #include "mots.h"
 #include "menu.h"
@@ -23,6 +24,7 @@ int main(int argc, char** argv)
     options* mesOptions = (options*)malloc(sizeof(options));
     affecterOptions(mesOptions);
 
+    int changementSon = !mesOptions->son;
     SDL_Rect bouttons[4];
     SDL_Texture* text[4];
     initializerMenu(bouttons,text,font,rend);
@@ -31,6 +33,11 @@ int main(int argc, char** argv)
     int stop = 0;
     while(!stop)
     {
+        if(mesOptions->son == 1)
+            Mix_HaltMusic();
+        else if(changementSon != mesOptions->son)
+            Mix_PlayMusic(generique,-1);
+        changementSon = mesOptions->son;
         // gestion des evenements
         SDL_Event event;
         while(SDL_PollEvent(&event))
@@ -42,6 +49,7 @@ int main(int argc, char** argv)
             else if(event.type == SDL_MOUSEBUTTONDOWN)
             {
                 int b = bouttonSelectione(bouttons);
+                Mix_PlayChannel(1,clique,0);
                 switch(b)
                 {
                     case 0 :jeux(win,rend,font,mesOptions,&stop);break;

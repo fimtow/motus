@@ -6,12 +6,17 @@
 #define TAILLEGRILLE 50
 #define TEMPSEC 15
 #define TEMPSREF 60*TEMPSEC
+#include <SDL2/SDL_mixer.h>
+
 
 // initialisation des variables globales de SDL
 SDL_Window* win;
 SDL_Renderer* rend;
 TTF_Font *font;
-//SDL_Color blanc = {255,255,255};
+Mix_Chunk* clique;
+Mix_Chunk* gagne;
+Mix_Chunk* perdu;
+Mix_Music* generique;
 // valeurs que prend l'etat de la partie
 typedef enum etat
 {
