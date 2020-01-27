@@ -49,7 +49,8 @@ int main(int argc, char** argv)
             else if(event.type == SDL_MOUSEBUTTONDOWN)
             {
                 int b = bouttonSelectione(bouttons);
-                Mix_PlayChannel(1,clique,0);
+                if(mesOptions->son == 0)
+                    Mix_PlayChannel(1,clique,0);
                 switch(b)
                 {
                     case 0 :jeux(win,rend,font,mesOptions,&stop);break;

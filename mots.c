@@ -23,17 +23,6 @@ void genererMot(char mot[],int taille,int diff)
     strcpy(mot,liste);
 
 }
-int choisirNbrLettres()
-{
-    int c;
-    do
-    {
-        printf("choisissez le nombres des lettres entre (6-10)\n");
-        scanf("%d",&c);
-
-    }while(c>10 || c<6);
-    return c;
-}
 
 char* dictionnaireUtilise(int taille,int dif)
 {
