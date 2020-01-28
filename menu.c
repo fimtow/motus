@@ -139,12 +139,16 @@ void afficherMenu(SDL_Window* win,SDL_Renderer* rend,SDL_Rect bouttons[],SDL_Tex
         SDL_RenderFillRect(rend,&bouttons[b]);
     }
     SDL_Rect cadre;
-    for(int i=0;i<4;i++)
+    for(int i=3;i<4;i++)
     {
         cadre = ajusterText(bouttons[i],text[i]);
         SDL_RenderCopy(rend,text[i],NULL,&cadre);
     }
-    afficherText("Réalisé par BELGRID YOUNES & AZROUR ABDESSAMAD",75,450,1);
+    afficherText2("Jouer",0,BOUTTONY,40,255,255,255,255);
+    afficherText2("HighScores",0,BOUTTONY+(BOUTTONH+BOUTTOND),40,255,255,255,255);
+    afficherText2("Options",0,BOUTTONY+(BOUTTONH+BOUTTOND)*2,40,255,255,255,255);
+    //afficherText("Réalisé par BELGRID YOUNES & AZROUR ABDESSAMAD",75,450,1);
+    afficherText2("Jeux réalisé par BELGRID YOUNES & AZROUR ABDESSAMAD",40,450,20,255,255,255,255);
     SDL_RenderPresent(rend);
 }
 
@@ -236,16 +240,22 @@ void votreScore(int score,int* stop,char mot[],int diff)
             break;
         SDL_SetRenderDrawColor(rend,241,196,15,255);
         SDL_RenderClear(rend);
-        afficherText("le mot est :",20,0,3);
-        afficherText(mot,330,0,3);
-        afficherText("Votre score est :",20,100,4);
+        //afficherText("le mot est :",20,0,3);
+        afficherText2("le mot est :",0,30,50,255,255,255,255);
+        //afficherText(mot,330,0,3);
+        afficherText2(mot,0,85,50,255,255,255,255);
+        //afficherText("Votre score est :",20,100,4);
+        afficherText2("Votre score est :",0,150,60,255,255,255,255);
         char scores[10];
         sprintf(scores, "%d",score);
-        afficherText(scores,300,200,4);
+        //afficherText(scores,300,200,4);
+        afficherText2(scores,0,225,60,255,255,255,255);
         if(ajouter)
         {
-            afficherText("Entrer votre nom :",50,300,3);
-            afficherText(nom,160,380,3);
+            //afficherText("Entrer votre nom :",50,300,3);
+            afficherText2("Entrer votre nom :",0,300,60,255,255,255,255);
+            //afficherText(nom,160,380,3);
+            afficherText2(nom,0,380,60,255,255,255,255);
         }
         SDL_RenderPresent(rend);
     }
@@ -295,14 +305,19 @@ void menuOptions(options* mesOptions,int* stop)
             break;
         SDL_SetRenderDrawColor(rend,241,196,15,255);
         SDL_RenderClear(rend);
-        afficherText("Options",100,10,5);
-        afficherText("Difficulté",10,130,3);
+        //afficherText("Options",100,10,5);
+        afficherText2("Options",0,30,50,255,255,255,255);
+        //afficherText("Difficulté",10,130,3);
+        afficherText2("Difficulté",10,130,40,255,255,255,255);
         afficherParametres(difficulte,3,10,&t[0],335,140,170,50,clique);
-        afficherText("Nbr lettres",10,190,3);
+        //afficherText("Nbr lettres",10,190,3);
+        afficherText2("Nbr lettres",10,190,40,255,255,255,255);
         afficherParametres(nbrLettres,5,3,&t[1],335,200,170,50,clique);
-        afficherText("temps",10,250,3);
+        //afficherText("temps",10,250,3);
+        afficherText2("temps",10,250,40,255,255,255,255);
         afficherParametres(tempsReflexion,3,3,&t[3],335,260,170,50,clique);
-        afficherText("Sons",10,310,3);
+        //afficherText("Sons",10,310,3);
+        afficherText2("Sons",10,310,40,255,255,255,255);
         afficherParametres(son,2,4,&t[2],335,320,170,50,clique);
         SDL_RenderPresent(rend);
         SDL_Delay(1000/60);
@@ -339,14 +354,17 @@ void menuHighscore(int* stop,int diff)
             break;
         SDL_SetRenderDrawColor(rend,241,196,15,255);
         SDL_RenderClear(rend);
-        afficherText("Highscore",100,0,5);
+        //afficherText("Highscore",100,0,5);
+        afficherText2("HighScores :",0,10,50,255,255,255,255);
         int i=0;
         while(tableau[i].sc != -1 && i<7)
         {
-            afficherText(tableau[i].nom,10,100+50*i,3);
+            //afficherText(tableau[i].nom,10,100+50*i,3);
+            afficherText2(tableau[i].nom,30,100+50*i,40,255,255,255,255);
             char score[10];
             sprintf(score, "%d",tableau[i].sc);
-            afficherText(score,500,100+50*i,3);
+            //afficherText(score,500,100+50*i,3);
+            afficherText2(score,450,100+50*i,40,255,255,255,255);
             i++;
         }
         SDL_RenderPresent(rend);

@@ -1,100 +1,5 @@
 # depslib dependency file v1.0
-1575756082 source:c:\users\younes\desktop\projet c\motus\game.c
-	<stdio.h>
-	<stdlib.h>
-	"game.h"
-
-1575756280 c:\users\younes\desktop\projet c\motus\game.h
-
-1575756417 source:c:\users\younes\desktop\projet c\motus\main.c
-	<stdio.h>
-	<stdlib.h>
-	"game.h"
-
-1580242088 source:d:\projet c\motus\main.c
-	<stdio.h>
-	<stdlib.h>
-	<string.h>
-	<SDL2/SDL.h>
-	<SDL2/SDL_image.h>
-	<SDL2/SDL_ttf.h>
-	<SDL2/SDL_timer.h>
-	<SDL2/SDL_mixer.h>
-	"jeux.h"
-	"mots.h"
-	"menu.h"
-	"gui.h"
-	"parametre.h"
-
-1579458202 d:\projet c\motus\game.h
-
-1579459595 source:d:\projet c\motus\game.c
-	<stdio.h>
-	<stdlib.h>
-	<string.h>
-	<time.h>
-	"game.h"
-
-1579900578 source:c:\users\abdessamad\desktop\motus\main.c
-	<stdio.h>
-	<stdlib.h>
-	<string.h>
-	<SDL2/SDL.h>
-	<SDL2/SDL_image.h>
-	<SDL2/SDL_ttf.h>
-	<SDL2/SDL_timer.h>
-	"jeux.h"
-	"mots.h"
-	"menu.h"
-	"gui.h"
-	"parametre.h"
-
-1579386909 c:\users\abdessamad\desktop\motus\game.h
-
-1579387010 source:c:\users\abdessamad\desktop\motus\game.c
-	<stdio.h>
-	<stdlib.h>
-	<string.h>
-	<time.h>
-	"game.h"
-
-1580236748 source:d:\projet c\motus\jeux.c
-	<stdio.h>
-	<stdlib.h>
-	<string.h>
-	<time.h>
-	"jeux.h"
-
-1580236788 d:\projet c\motus\jeux.h
-
-1579900578 source:c:\users\abdessamad\desktop\motus\jeux.c
-	<stdio.h>
-	<stdlib.h>
-	<string.h>
-	<time.h>
-	"jeux.h"
-
-1579900578 c:\users\abdessamad\desktop\motus\jeux.h
-
-1579900815 c:\users\abdessamad\desktop\motus\mots.h
-
-1579901079 source:c:\users\abdessamad\desktop\motus\mots.c
-	<stdio.h>
-	<stdlib.h>
-	<string.h>
-	<time.h>
-	"mots.h"
-
-1580236800 d:\projet c\motus\mots.h
-
-1580242138 source:d:\projet c\motus\mots.c
-	<stdio.h>
-	<stdlib.h>
-	<string.h>
-	<time.h>
-	"mots.h"
-
-1580242158 source:d:\projet c\motus\gui.c
+1580249091 source:d:\projet c\motus\gui.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -107,65 +12,13 @@
 	"menu.h"
 	"gui.h"
 	"jeux.h"
+
+1580236777 d:\projet c\motus\menu.h
 
 1580236858 d:\projet c\motus\gui.h
 	<SDL2/SDL_mixer.h>
 
-1580236777 d:\projet c\motus\menu.h
-
-1580242262 source:d:\projet c\motus\menu.c
-	<stdio.h>
-	<stdlib.h>
-	<string.h>
-	<SDL2/SDL.h>
-	<SDL2/SDL_image.h>
-	<SDL2/SDL_ttf.h>
-	<SDL2/SDL_timer.h>
-	"jeux.h"
-	"mots.h"
-	"menu.h"
-	"gui.h"
-	"parametre.h"
-	"highScore.h"
-
-1579900877 source:c:\users\abdessamad\desktop\motus\gui.c
-	<stdio.h>
-	<stdlib.h>
-	<string.h>
-	<time.h>
-	<SDL2/SDL.h>
-	<SDL2/SDL_image.h>
-	<SDL2/SDL_ttf.h>
-	<SDL2/SDL_timer.h>
-	"menu.h"
-	"gui.h"
-	"jeux.h"
-
-1579900578 c:\users\abdessamad\desktop\motus\menu.h
-
-1579900578 c:\users\abdessamad\desktop\motus\gui.h
-
-1579900578 source:c:\users\abdessamad\desktop\motus\menu.c
-	<stdio.h>
-	<stdlib.h>
-	<string.h>
-	<SDL2/SDL.h>
-	<SDL2/SDL_image.h>
-	<SDL2/SDL_ttf.h>
-	<SDL2/SDL_timer.h>
-	"jeux.h"
-	"mots.h"
-	"menu.h"
-	"gui.h"
-	"parametre.h"
-	"highScore.h"
-
-1579900578 source:c:\users\abdessamad\desktop\motus\highscore.c
-	<stdio.h>
-	<stdlib.h>
-	"highScore.h"
-
-1579900578 c:\users\abdessamad\desktop\motus\highscore.h
+1580236788 d:\projet c\motus\jeux.h
 
 1580236756 source:d:\projet c\motus\highscore.c
 	<stdio.h>
@@ -174,21 +27,56 @@
 
 1580236783 d:\projet c\motus\highscore.h
 
-1579890619 d:\projet c\motus\parametre.h
-
-1580236763 source:d:\projet c\motus\parametre.c
+1580236748 source:d:\projet c\motus\jeux.c
 	<stdio.h>
 	<stdlib.h>
+	<string.h>
+	<time.h>
+	"jeux.h"
+
+1580246951 source:d:\projet c\motus\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
 	<SDL2/SDL.h>
 	<SDL2/SDL_image.h>
 	<SDL2/SDL_ttf.h>
 	<SDL2/SDL_timer.h>
+	<SDL2/SDL_mixer.h>
+	<windows.h>
+	"jeux.h"
+	"mots.h"
 	"menu.h"
+	"gui.h"
 	"parametre.h"
 
-1579900579 c:\users\abdessamad\desktop\motus\parametre.h
+1580236800 d:\projet c\motus\mots.h
 
-1579900579 source:c:\users\abdessamad\desktop\motus\parametre.c
+1579890619 d:\projet c\motus\parametre.h
+
+1580249378 source:d:\projet c\motus\menu.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	<SDL2/SDL_timer.h>
+	"jeux.h"
+	"mots.h"
+	"menu.h"
+	"gui.h"
+	"parametre.h"
+	"highScore.h"
+
+1580242138 source:d:\projet c\motus\mots.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	"mots.h"
+
+1580236763 source:d:\projet c\motus\parametre.c
 	<stdio.h>
 	<stdlib.h>
 	<SDL2/SDL.h>

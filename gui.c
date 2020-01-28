@@ -20,7 +20,7 @@ void initializerSDL(SDL_Window** win,SDL_Renderer** rend,TTF_Font** font)
     *win = SDL_CreateWindow("Motus",SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED,LARGEUR, HAUTEUR, 0);
     *rend = SDL_CreateRenderer(*win, -1, SDL_RENDERER_ACCELERATED);
     TTF_Init();
-    *font = TTF_OpenFont("ressources/police.ttf",200);
+    *font = TTF_OpenFont("ressources/police.ttf",40);
     Mix_OpenAudio(22050,MIX_DEFAULT_FORMAT,2,2048);
     clique = Mix_LoadWAV("ressources/clique.wav");
     gagne = Mix_LoadWAV("ressources/gagne.wav");
@@ -135,14 +135,18 @@ void afficher(SDL_Rect rectangles[],SDL_Renderer* rend,etatJeux* monEtat,SDL_Tex
     char temps[10];
     static SDL_Color blanc = {255,255,255};
     sprintf(temps, "%d",(int)monEtat->tempsReflexion/60);
-    afficherText(temps,250,410,3);
+    //afficherText(temps,250,410,3);
+    afficherText2(temps,220,420,40,255,255,255,255);
     // affichage du score
     char score[10];
     sprintf(score, "%d",(int)monEtat->score);
-    afficherText(score,570,410,3);
+    //afficherText(score,570,410,3);
+    afficherText2(score,540,420,40,255,255,255,255);
     // affichage des texts
-    afficherText("TEMPS :",10,410,3);
-    afficherText("SCORE :",340,410,3);
+    //afficherText("TEMPS :",10,410,3);
+    afficherText2("TEMPS :",30,420,40,255,255,255,255);
+    //afficherText("SCORE :",340,410,3);
+    afficherText2("SCORE :",340,420,40,255,255,255,255);
     SDL_RenderPresent(rend);
 }
 
@@ -299,6 +303,26 @@ void afficherText(char text[],int x,int y,int taille)
     SDL_DestroyTexture(texture);
 }
 
+void afficherText2(char text[],int x,int y,int taille,int r,int g,int b,int t)
+{
+    SDL_Color maCouleur = {r,g,b,t};
+    TTF_Font* maPolice = TTF_OpenFont("ressources/police.ttf",taille);
+    SDL_Surface* surface = TTF_RenderText_Blended(maPolice,text,maCouleur);
+    SDL_Texture* texture = SDL_CreateTextureFromSurface(rend,surface);
+    SDL_Rect monRectangle;
+    SDL_QueryTexture(texture,NULL,NULL,&monRectangle.w,&monRectangle.h);
+    monRectangle.y = y;
+    if(x==0)
+    {
+        monRectangle.x = (LARGEUR-monRectangle.w)/2;
+    }
+    else
+        monRectangle.x = x;
+    SDL_RenderCopy(rend,texture,NULL,&monRectangle);
+    SDL_FreeSurface(surface);
+    SDL_DestroyTexture(texture);
+    TTF_CloseFont(maPolice);
+}
 // permet d'afficher le boutton a defilement utilise dans le menu options, il permet de choisir parmit plusieurs options
 void afficherParametres(char options[],int nbop,int longueur,int* etat,int x,int y,int w,int h,int clique)
 {
@@ -336,7 +360,8 @@ void afficherParametres(char options[],int nbop,int longueur,int* etat,int x,int
                 *etat = 0;
         }
     }
-    afficherText(&options[longueur*(*etat)],rectangle.x+w/8,rectangle.y,2);
+    //afficherText(&options[longueur*(*etat)],rectangle.x+w/8,rectangle.y,2);
+    afficherText2(&options[longueur*(*etat)],rectangle.x+w/8,rectangle.y,40,255,255,255,255);
     SDL_DestroyTexture(texture);
     SDL_FreeSurface(surface);
 }

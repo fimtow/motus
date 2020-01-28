@@ -8,6 +8,8 @@
 #include <SDL2/SDL_ttf.h>
 #include <SDL2/SDL_timer.h>
 #include <SDL2/SDL_mixer.h>
+#define _WIN32_WINNT 0x0500
+#include <windows.h>
 #include "jeux.h"
 #include "mots.h"
 #include "menu.h"
@@ -16,7 +18,8 @@
 
 int main(int argc, char** argv)
 {
-
+    //HWND hWnd = GetConsoleWindow();
+    //ShowWindow( hWnd, SW_HIDE );
     // initialisation de SDL
     initializerSDL(&win,&rend,&font);
     SDL_Surface* icone = IMG_Load("ressources/icone.ico");
