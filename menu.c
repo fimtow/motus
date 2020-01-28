@@ -18,14 +18,13 @@
 void jeux(SDL_Window* win,SDL_Renderer* rend,TTF_Font *font,options* mesOptions,int* stop)
 {
     // initialisation de l'etat du jeux
-    etatJeux* monEtat = (etatJeux*)malloc(sizeof(etatJeux));
+    //etatJeux* monEtat = (etatJeux*)malloc(sizeof(etatJeux));
+    etatJeux varMonEtat;
+    etatJeux* monEtat = &varMonEtat;
     initializerEtatJeux(monEtat,mesOptions);
-
     // initialisation du dictionnaire
     int nbr;
-    printf("here");
     char **dictionnaire = initializerDictionnaire(dictionnaire,monEtat->mot[0],&nbr);
-
     // initialisation des textures et rectangles (plus le curseur et le rectangle tentative d'ou le +2)
     SDL_Rect rectangles[monEtat->taille*7+2];
     grille(rectangles,monEtat->taille);
@@ -94,9 +93,9 @@ void jeux(SDL_Window* win,SDL_Renderer* rend,TTF_Font *font,options* mesOptions,
     SDL_DestroyTexture(rondJaune);
     for(int i=0;i<26;i++)
         SDL_DestroyTexture(&lettres[i]);
-    printf("finfcf");
     if(!*stop)
         votreScore(monEtat->score,stop,monEtat->mot,mesOptions->difficulte);
+    free(monEtat);
 }
 
 // initialise les rectangles et textures du menu
@@ -126,7 +125,7 @@ void initializerMenu(SDL_Rect bouttons[],SDL_Texture* text[],TTF_Font *font,SDL_
     SDL_FreeSurface(surface);
 }
 
-// affiche le menu
+// affiche le menu principal
 void afficherMenu(SDL_Window* win,SDL_Renderer* rend,SDL_Rect bouttons[],SDL_Texture* text[])
 {
     SDL_SetRenderDrawColor(rend,231,76,60,255);
@@ -145,6 +144,7 @@ void afficherMenu(SDL_Window* win,SDL_Renderer* rend,SDL_Rect bouttons[],SDL_Tex
         cadre = ajusterText(bouttons[i],text[i]);
         SDL_RenderCopy(rend,text[i],NULL,&cadre);
     }
+    afficherText("Réalisé par BELGRID YOUNES & AZROUR ABDESSAMAD",75,450,1);
     SDL_RenderPresent(rend);
 }
 
@@ -176,7 +176,6 @@ int bouttonSelectione(SDL_Rect rect[])
 // affiche le score a l'utilisateur et demande de le sauvegarder
 void votreScore(int score,int* stop,char mot[],int diff)
 {
-    printf("here");
     highScore tableau[7];
     for(int i=0;i<7;i++)
         tableau[i].sc = -1;

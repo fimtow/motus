@@ -187,6 +187,8 @@ void changerEtat(etatJeux* monEtat,options* mesOptions,char*** dictionnaire,int 
             monEtat->score = temp;
             afficherAide(monEtat);
             // initialisation du dictionnaire
+            for(int i=0;i<*nbr;i++)
+                free((*dictionnaire)[i]);
             free(*dictionnaire);
             *dictionnaire = initializerDictionnaire(*dictionnaire,monEtat->mot[0],nbr);
             if(mesOptions->son == 0)
@@ -200,6 +202,8 @@ void changerEtat(etatJeux* monEtat,options* mesOptions,char*** dictionnaire,int 
         monEtat->score = temp;
         afficherAide(monEtat);
         // initialisation du dictionnaire
+        for(int i=0;i<*nbr;i++)
+            free((*dictionnaire)[i]);
         free(*dictionnaire);
         *dictionnaire = initializerDictionnaire(*dictionnaire,monEtat->mot[0],nbr);
         if(mesOptions->son == 0)

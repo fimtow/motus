@@ -75,6 +75,7 @@ int main(int argc, char** argv)
     }
 
     // nettoyage et fermeture de SDL
+    free(mesOptions);
     for(int i=0;i<4;i++)
         SDL_DestroyTexture(&text[i]);
     fermerSDL(win,rend,font);
