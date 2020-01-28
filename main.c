@@ -1,3 +1,5 @@
+// AUTEURS : BELGRID YOUNES & AZROUR ABDESSAMAD
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -19,11 +21,12 @@ int main(int argc, char** argv)
     initializerSDL(&win,&rend,&font);
     SDL_Surface* icone = IMG_Load("ressources/icone.ico");
     SDL_SetWindowIcon(win,icone);
-    //SDL_FreeSurface(icone);
-    // initialisation des rectangles et textures
+
+    // charger les options
     options* mesOptions = (options*)malloc(sizeof(options));
     affecterOptions(mesOptions);
 
+    // initialisation de variables son et des boutons et de l'image
     int changementSon = !mesOptions->son;
     SDL_Rect bouttons[4];
     SDL_Texture* text[4];
@@ -33,11 +36,13 @@ int main(int argc, char** argv)
     int stop = 0;
     while(!stop)
     {
+        // faire marcher ou pas le generique selon les parametres
         if(mesOptions->son == 1)
             Mix_HaltMusic();
         else if(changementSon != mesOptions->son)
             Mix_PlayMusic(generique,-1);
         changementSon = mesOptions->son;
+
         // gestion des evenements
         SDL_Event event;
         while(SDL_PollEvent(&event))
@@ -61,11 +66,14 @@ int main(int argc, char** argv)
         }
         if(stop)
             break;
+
         // affichage et render
         afficherMenu(win,rend,bouttons,text);
-        // wait to have 60 fps
+
+        // attente pour avoir 60 FPS
         SDL_Delay(1000/60);
     }
+
     // nettoyage et fermeture de SDL
     for(int i=0;i<4;i++)
         SDL_DestroyTexture(&text[i]);

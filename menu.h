@@ -1,3 +1,5 @@
+// AUTEURS : BELGRID YOUNES & AZROUR ABDESSAMAD
+
 #define BOUTTONH 50
 #define BOUTTONL 250
 #define BOUTTONY 250
@@ -10,6 +12,7 @@ typedef struct options
     int difficulte;
     int son;
 }options;
+
 // demare le jeux
 void jeux(SDL_Window* win,SDL_Renderer* rend,TTF_Font *font,options* mesOptions,int* stop);
 

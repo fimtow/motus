@@ -1,11 +1,11 @@
+// AUTEURS : BELGRID YOUNES & AZROUR ABDESSAMAD
+
 #define HAUTEUR 480
 #define LARGEUR 640
 #define POSGRILLEX 40
 #define POSGRILLEY 30
 #define DISTGRILLE 5
 #define TAILLEGRILLE 50
-#define TEMPSEC 15
-#define TEMPSREF 60*TEMPSEC
 #include <SDL2/SDL_mixer.h>
 
 
@@ -17,6 +17,7 @@ Mix_Chunk* clique;
 Mix_Chunk* gagne;
 Mix_Chunk* perdu;
 Mix_Music* generique;
+
 // valeurs que prend l'etat de la partie
 typedef enum etat
 {
@@ -38,6 +39,7 @@ typedef struct etatJeux
     char input[7][11];
     etat etatPartie;
 }etatJeux;
+
 // initialise SDL et tous les autres biblio associe
 void initializerSDL(SDL_Window** win,SDL_Renderer** rend,TTF_Font** font);
 

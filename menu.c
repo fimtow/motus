@@ -1,3 +1,5 @@
+// AUTEURS : BELGRID YOUNES & AZROUR ABDESSAMAD
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -11,17 +13,18 @@
 #include "gui.h"
 #include "parametre.h"
 #include "highScore.h"
+
 //demare le jeux
 void jeux(SDL_Window* win,SDL_Renderer* rend,TTF_Font *font,options* mesOptions,int* stop)
 {
     // initialisation de l'etat du jeux
     etatJeux* monEtat = (etatJeux*)malloc(sizeof(etatJeux));
     initializerEtatJeux(monEtat,mesOptions);
+
     // initialisation du dictionnaire
     int nbr;
     printf("here");
     char **dictionnaire = initializerDictionnaire(dictionnaire,monEtat->mot[0],&nbr);
-
 
     // initialisation des textures et rectangles (plus le curseur et le rectangle tentative d'ou le +2)
     SDL_Rect rectangles[monEtat->taille*7+2];
@@ -34,6 +37,7 @@ void jeux(SDL_Window* win,SDL_Renderer* rend,TTF_Font *font,options* mesOptions,
     SDL_StartTextInput();
     char lettreUtf8[32];
     char lettre = 48;
+
     // game loop
     afficherAide(monEtat);
     while(monEtat->etatPartie == ENCOURS)
@@ -248,6 +252,7 @@ void votreScore(int score,int* stop,char mot[],int diff)
     }
 }
 
+// affiche le menu des options, qui permet de regler les parametres du jeux
 void menuOptions(options* mesOptions,int* stop)
 {
     int t[4];
@@ -309,6 +314,8 @@ void menuOptions(options* mesOptions,int* stop)
         affecterOptions(mesOptions);
     }
 }
+
+// affiche le menu du high score
 void menuHighscore(int* stop,int diff)
 {
     int sortir = 0;

@@ -1,3 +1,5 @@
+// AUTEURS : BELGRID YOUNES & AZROUR ABDESSAMAD
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <SDL2/SDL.h>
@@ -7,6 +9,7 @@
 #include "menu.h"
 #include "parametre.h"
 
+// charge les options du fichier et les mets dans un tableau
 void chargerParametre(char* m,int* t)
 {
     FILE* f = fopen(m,"r");
@@ -22,6 +25,8 @@ void chargerParametre(char* m,int* t)
     }
     fclose(f);
 }
+
+// sauvegarde les nouveau parametres dans le fichier
 void sauvegarderParametre(char* m,int difficulte,int nombresLettres ,int sons,int temps  )
 {
      FILE* f=fopen(m,"w");
@@ -29,6 +34,8 @@ void sauvegarderParametre(char* m,int difficulte,int nombresLettres ,int sons,in
 
     fclose(f);
 }
+
+// affecte les options a la structure dedie a cela
 void affecterOptions(options* mesOptions)
 {
     int t[4];

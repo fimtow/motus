@@ -1,6 +1,10 @@
+// AUTEURS : BELGRID YOUNES & AZROUR ABDESSAMAD
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "highScore.h"
+
+// charge le fichier highscore et mot son contenu dans un tableau
 void chargerHighScore(highScore* t,int diff)
 {
     char m[16];
@@ -20,6 +24,8 @@ void chargerHighScore(highScore* t,int diff)
     }
     fclose(f);
 }
+
+// sauvegarde le nouveau high score dans le fichier highScore
 void sauvegarderHighScore(char* nom,int score,int diff)
 {   char m[16];
     switch(diff)

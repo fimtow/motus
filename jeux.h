@@ -1,5 +1,4 @@
-// taille du dictionnare (nbr des lignes) ,pour testdictionnaire.txt le nbr est 16
-
+// AUTEURS : BELGRID YOUNES & AZROUR ABDESSAMAD
 
 // la fonction principale au fonctionnement du jeux, elle compare l'input au mot et retourne une evaluation
 void comparer(char input[],char mot[],char *evaluation,int taille);

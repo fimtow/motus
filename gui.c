@@ -1,3 +1,5 @@
+// AUTEURS : BELGRID YOUNES & AZROUR ABDESSAMAD
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -293,6 +295,7 @@ void afficherText(char text[],int x,int y,int taille)
     SDL_DestroyTexture(texture);
 }
 
+// permet d'afficher le boutton a defilement utilise dans le menu options, il permet de choisir parmit plusieurs options
 void afficherParametres(char options[],int nbop,int longueur,int* etat,int x,int y,int w,int h,int clique)
 {
     SDL_Surface* surface = IMG_Load("ressources/fleche.png");
