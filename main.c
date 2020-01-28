@@ -66,9 +66,10 @@ int main(int argc, char** argv)
         // wait to have 60 fps
         SDL_Delay(1000/60);
     }
-    printf("fermeture correcte");
     // nettoyage et fermeture de SDL
+    for(int i=0;i<4;i++)
+        SDL_DestroyTexture(&text[i]);
     fermerSDL(win,rend,font);
-
+    printf("fermeture correcte");
     return 0;
 }

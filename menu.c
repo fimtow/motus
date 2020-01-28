@@ -19,6 +19,7 @@ void jeux(SDL_Window* win,SDL_Renderer* rend,TTF_Font *font,options* mesOptions,
     initializerEtatJeux(monEtat,mesOptions);
     // initialisation du dictionnaire
     int nbr;
+    printf("here");
     char **dictionnaire = initializerDictionnaire(dictionnaire,monEtat->mot[0],&nbr);
 
 
@@ -86,7 +87,10 @@ void jeux(SDL_Window* win,SDL_Renderer* rend,TTF_Font *font,options* mesOptions,
 
     }
     //SDL_StopTextInput();
-    //printf("finfcf");
+    SDL_DestroyTexture(rondJaune);
+    for(int i=0;i<26;i++)
+        SDL_DestroyTexture(&lettres[i]);
+    printf("finfcf");
     if(!*stop)
         votreScore(monEtat->score,stop,monEtat->mot,mesOptions->difficulte);
 }
@@ -104,8 +108,8 @@ void initializerMenu(SDL_Rect bouttons[],SDL_Texture* text[],TTF_Font *font,SDL_
     SDL_Surface* surface = IMG_Load("ressources/logo.png");
     text[3] = SDL_CreateTextureFromSurface(rend,surface);
     SDL_QueryTexture(text[3],NULL,NULL,&bouttons[3].w,&bouttons[3].h);
-    bouttons[3].w /= 10;
-    bouttons[3].h /= 10;
+    bouttons[3].w /= 8;
+    bouttons[3].h /= 8;
     bouttons[3].x = LARGEUR/2-bouttons[3].w/2;
     bouttons[3].y = 50;
     SDL_Colour blanc = {255,255,255,255};
@@ -115,6 +119,7 @@ void initializerMenu(SDL_Rect bouttons[],SDL_Texture* text[],TTF_Font *font,SDL_
     text[1] = SDL_CreateTextureFromSurface(rend,surface);
     surface = TTF_RenderText_Blended(font,"Options",blanc);
     text[2] = SDL_CreateTextureFromSurface(rend,surface);
+    SDL_FreeSurface(surface);
 }
 
 // affiche le menu
@@ -167,6 +172,7 @@ int bouttonSelectione(SDL_Rect rect[])
 // affiche le score a l'utilisateur et demande de le sauvegarder
 void votreScore(int score,int* stop,char mot[],int diff)
 {
+    printf("here");
     highScore tableau[7];
     for(int i=0;i<7;i++)
         tableau[i].sc = -1;
@@ -189,6 +195,7 @@ void votreScore(int score,int* stop,char mot[],int diff)
     }
     char nom[20];
     nom[0] = '_';
+    nom[1] = '\0';
     int curseur = 0;
     char lettreUtf8[32];
     char lettre = 48;
@@ -294,6 +301,7 @@ void menuOptions(options* mesOptions,int* stop)
         afficherText("Sons",10,310,3);
         afficherParametres(son,2,4,&t[2],335,320,170,50,clique);
         SDL_RenderPresent(rend);
+        SDL_Delay(1000/60);
     }
     if(!*stop)
     {
@@ -336,5 +344,6 @@ void menuHighscore(int* stop,int diff)
             i++;
         }
         SDL_RenderPresent(rend);
+        SDL_Delay(1000/60);
     }
 }

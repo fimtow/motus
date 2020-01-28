@@ -29,6 +29,10 @@ void initializerSDL(SDL_Window** win,SDL_Renderer** rend,TTF_Font** font)
 // ferme SDL et libere la memoire
 void fermerSDL(SDL_Window* win,SDL_Renderer* rend,TTF_Font *font)
 {
+    Mix_FreeChunk(clique);
+    Mix_FreeChunk(gagne);
+    Mix_FreeChunk(perdu);
+    Mix_FreeMusic(generique);
     TTF_CloseFont(font);
     SDL_DestroyRenderer(rend);
     SDL_DestroyWindow(win);
@@ -100,8 +104,18 @@ void afficher(SDL_Rect rectangles[],SDL_Renderer* rend,etatJeux* monEtat,SDL_Tex
     iter = (monEtat->tentative)*monEtat->taille;
     for(int i=0;i<iter;i++)
     {
+
         if(monEtat->input[i/monEtat->taille][i%monEtat->taille] != NULL )
-            SDL_RenderCopy(rend, lettres[monEtat->input[i/monEtat->taille][i%monEtat->taille]-97], NULL, &rectangles[i]);
+        {
+            SDL_Rect cadre;
+            cadre.y = rectangles[i].y;
+            SDL_QueryTexture(lettres[monEtat->input[i/monEtat->taille][i%monEtat->taille]-97],NULL,NULL,&cadre.w,&cadre.h);
+            cadre.w = cadre.w*rectangles[i].h/cadre.h;
+            cadre.h = rectangles[i].h;
+            cadre.x = rectangles[i].x+(TAILLEGRILLE-cadre.w)/2;
+            SDL_RenderCopy(rend, lettres[monEtat->input[i/monEtat->taille][i%monEtat->taille]-97], NULL, &cadre);
+        }
+
 
     }
     // affichage du curseur
@@ -144,7 +158,7 @@ void initializerTextures(SDL_Renderer* rend,SDL_Texture** rondJaune,SDL_Texture*
     for(int i=0;i<26;i++)
     {
         let[0] = 65+i;
-        surface = TTF_RenderText_Solid(font,let,blanc);
+        surface = TTF_RenderText_Blended(font,let,blanc);
         text = SDL_CreateTextureFromSurface(rend, surface);
         lettres[i] = text;
     }
@@ -243,8 +257,7 @@ void miseAjour(char lettre,etatJeux* monEtat,char** dictionnaire,int tailleDicti
 // affiche a chaque tentative un aide(la premiere fois la premiere lettre et une autre au hazard, et par la suite les lettres decouvertes)
 void afficherAide(etatJeux* monEtat)
 {
-    static int premiereFois = 1;
-    if(!premiereFois)
+    if(monEtat->tentative > 1)
     {
         for(int i=0;i<monEtat->taille;i++)
         {
@@ -252,8 +265,7 @@ void afficherAide(etatJeux* monEtat)
                 monEtat->decouvert[i] = 1;
         }
     }
-    if(premiereFois)
-        premiereFois = 0;
+
     for(int i=0;i<monEtat->taille;i++)
     {
         if(monEtat->decouvert[i]==1)
