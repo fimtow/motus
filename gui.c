@@ -29,6 +29,8 @@ void initializerSDL(SDL_Window** win,SDL_Renderer** rend,TTF_Font** font)
     f = Mix_LoadWAV("ressources/f.wav");
     p = Mix_LoadWAV("ressources/p.wav");
     generique = Mix_LoadMUS("ressources/motus.wav");
+    Mix_VolumeChunk(f,30);
+    Mix_VolumeMusic(30);
 }
 
 // ferme SDL et libere la memoire
@@ -116,14 +118,15 @@ void afficher(SDL_Rect rectangles[],SDL_Renderer* rend,etatJeux* monEtat,SDL_Tex
             SDL_RenderFillRect(rend,&rectangles[i]);
         }
     }
-    if((int)monEtat->animation<monEtat->taille)
+    if((int)monEtat->animation<monEtat->taille+1 && mesOptions->son == 0 && monEtat->son < (int)monEtat->animation)
     {
-        if(mesOptions->son == 0 && monEtat->evaluation[(iter-1)/monEtat->taille][(iter-1)%monEtat->taille] == 'V')
+        if(monEtat->evaluation[(iter-1)/monEtat->taille][(iter-1)%monEtat->taille] == 'V')
             Mix_PlayChannel(1,v,0);
-        else if(mesOptions->son == 0 && monEtat->evaluation[(iter-1)/monEtat->taille][(iter-1)%monEtat->taille] == 'F')
+        else if(monEtat->evaluation[(iter-1)/monEtat->taille][(iter-1)%monEtat->taille] == 'F')
             Mix_PlayChannel(1,f,0);
-        else if(mesOptions->son == 0 && monEtat->evaluation[(iter-1)/monEtat->taille][(iter-1)%monEtat->taille] == 'P')
+        else if(monEtat->evaluation[(iter-1)/monEtat->taille][(iter-1)%monEtat->taille] == 'P')
             Mix_PlayChannel(1,p,0);
+        monEtat->son++;
     }
     // affichage des lettres
     iter = (monEtat->tentative)*monEtat->taille;
@@ -158,18 +161,14 @@ void afficher(SDL_Rect rectangles[],SDL_Renderer* rend,etatJeux* monEtat,SDL_Tex
     char temps[10];
     static SDL_Color blanc = {255,255,255};
     sprintf(temps, "%d",(int)monEtat->tempsReflexion/60);
-    //afficherText(temps,250,410,3);
-    afficherText2(temps,220,420,40,255,255,255,255);
+    afficherText(temps,220,420,40,255,255,255,255);
     // affichage du score
     char score[10];
     sprintf(score, "%d",(int)monEtat->score);
-    //afficherText(score,570,410,3);
-    afficherText2(score,540,420,40,255,255,255,255);
+    afficherText(score,540,420,40,255,255,255,255);
     // affichage des texts
-    //afficherText("TEMPS :",10,410,3);
-    afficherText2("TEMPS :",30,420,40,255,255,255,255);
-    //afficherText("SCORE :",340,410,3);
-    afficherText2("SCORE :",340,420,40,255,255,255,255);
+    afficherText("TEMPS :",30,420,40,255,255,255,255);
+    afficherText("SCORE :",340,420,40,255,255,255,255);
     SDL_RenderPresent(rend);
 }
 
@@ -260,6 +259,7 @@ void miseAjour(char lettre,etatJeux* monEtat,char** dictionnaire,int tailleDicti
         {
             comparer(&(monEtat->input[monEtat->tentative-1][0]),monEtat->mot,&(monEtat->evaluation[monEtat->tentative-1][0]),monEtat->taille);
             monEtat->animation = 0.0;
+            monEtat->son = 0;
         }
 
         monEtat->tentative++;
@@ -285,7 +285,7 @@ void miseAjour(char lettre,etatJeux* monEtat,char** dictionnaire,int tailleDicti
             monEtat->animation += 0.1;
     else
         monEtat->tempsReflexion--;
-    // dimunition du temps de reflexion et passage a la tentative suivant en cas de sa consommation
+    // dimunition du temps de reflexion (en haut) et passage a la tentative suivant en cas de sa consommation
     if(monEtat->tempsReflexion<0)
     {
         monEtat->tentative++;
@@ -316,25 +316,7 @@ void afficherAide(etatJeux* monEtat)
 }
 
 //fonction qui affiche du text
-void afficherText(char text[],int x,int y,int taille)
-{
-    static SDL_Color blanc = {255,255,255};
-    SDL_Surface* surface = TTF_RenderText_Blended(font,text,blanc);
-    SDL_Texture* texture = SDL_CreateTextureFromSurface(rend,surface);
-    SDL_Rect rectangle;
-    rectangle.x = x;
-    rectangle.y = y;
-    SDL_QueryTexture(texture,NULL,NULL,&rectangle.w,&rectangle.h);
-    rectangle.w /= 10;
-    rectangle.h /= 10;
-    rectangle.w *= taille;
-    rectangle.h *= taille;
-    SDL_RenderCopy(rend,texture,NULL,&rectangle);
-    SDL_FreeSurface(surface);
-    SDL_DestroyTexture(texture);
-}
-
-void afficherText2(char text[],int x,int y,int taille,int r,int g,int b,int t)
+void afficherText(char text[],int x,int y,int taille,int r,int g,int b,int t)
 {
     SDL_Color maCouleur = {r,g,b,t};
     TTF_Font* maPolice = TTF_OpenFont("ressources/police.ttf",taille);
@@ -391,8 +373,7 @@ void afficherParametres(char options[],int nbop,int longueur,int* etat,int x,int
                 *etat = 0;
         }
     }
-    //afficherText(&options[longueur*(*etat)],rectangle.x+w/8,rectangle.y,2);
-    afficherText2(&options[longueur*(*etat)],rectangle.x+w/8,rectangle.y,40,255,255,255,255);
+    afficherText(&options[longueur*(*etat)],rectangle.x+w/8,rectangle.y,40,255,255,255,255);
     SDL_DestroyTexture(texture);
     SDL_FreeSurface(surface);
 }

@@ -37,6 +37,7 @@ typedef struct etatJeux
     int tempsReflexion;
     int score;
     float animation;
+    int son;
     char mot[11];
     char decouvert[11];
     char evaluation[7][11];
@@ -75,7 +76,7 @@ void miseAjour(char lettre,etatJeux* monEtat,char** dictionnaire,int tailleDicti
 void afficherAide(etatJeux* monEtat);
 
 // fonction qui affiche du text
-void afficherText(char text[],int x,int y,int taille);
+void afficherText(char text[],int x,int y,int taille,int r,int g,int b,int t);
 
 // fonction qui affiche les parametres reglables
 void afficherParametres(char options[],int nbop,int longueur,int* etat,int x,int y,int w,int h,int clique);
