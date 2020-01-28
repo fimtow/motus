@@ -17,6 +17,9 @@ Mix_Chunk* clique;
 Mix_Chunk* gagne;
 Mix_Chunk* perdu;
 Mix_Music* generique;
+Mix_Chunk* v;
+Mix_Chunk* f;
+Mix_Chunk* p;
 
 // valeurs que prend l'etat de la partie
 typedef enum etat
@@ -33,6 +36,7 @@ typedef struct etatJeux
     int curseur;
     int tempsReflexion;
     int score;
+    float animation;
     char mot[11];
     char decouvert[11];
     char evaluation[7][11];
@@ -53,7 +57,7 @@ void initializerEtatJeux(etatJeux* monEtat,options* mesOptions);
 void grille(SDL_Rect rectangles[],int taille);
 
 // affiche et render tous les objets
-void afficher(SDL_Rect rectangles[],SDL_Renderer* rend,etatJeux* monEtat,SDL_Texture* lettres[],SDL_Texture* rondJaune,TTF_Font *font);
+void afficher(SDL_Rect rectangles[],SDL_Renderer* rend,etatJeux* monEtat,SDL_Texture* lettres[],SDL_Texture* rondJaune,TTF_Font *font,options* mesOptions);
 
 // charge les textures des lettre et du rond jaune
 void initializerTextures(SDL_Renderer* rend,SDL_Texture** rondJaune,SDL_Texture* lettres[],TTF_Font *font);

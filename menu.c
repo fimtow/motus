@@ -83,7 +83,7 @@ void jeux(SDL_Window* win,SDL_Renderer* rend,TTF_Font *font,options* mesOptions,
              break;
          }
         // affichage et render
-        afficher(rectangles,rend,monEtat,lettres,rondJaune,font);
+        afficher(rectangles,rend,monEtat,lettres,rondJaune,font,mesOptions);
 
         // ajustement du FPS
         SDL_Delay(1000/60);

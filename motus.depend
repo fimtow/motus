@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1580249796 source:d:\projet c\motus\gui.c
+1580251158 source:d:\projet c\motus\gui.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -15,7 +15,7 @@
 
 1580236777 d:\projet c\motus\menu.h
 
-1580236858 d:\projet c\motus\gui.h
+1580250174 d:\projet c\motus\gui.h
 	<SDL2/SDL_mixer.h>
 
 1580236788 d:\projet c\motus\jeux.h
@@ -54,7 +54,7 @@
 
 1579890619 d:\projet c\motus\parametre.h
 
-1580249378 source:d:\projet c\motus\menu.c
+1580251111 source:d:\projet c\motus\menu.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>

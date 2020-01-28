@@ -25,6 +25,9 @@ void initializerSDL(SDL_Window** win,SDL_Renderer** rend,TTF_Font** font)
     clique = Mix_LoadWAV("ressources/clique.wav");
     gagne = Mix_LoadWAV("ressources/gagne.wav");
     perdu = Mix_LoadWAV("ressources/perdu.wav");
+    v = Mix_LoadWAV("ressources/v.wav");
+    f = Mix_LoadWAV("ressources/f.wav");
+    p = Mix_LoadWAV("ressources/p.wav");
     generique = Mix_LoadMUS("ressources/motus.wav");
 }
 
@@ -34,6 +37,9 @@ void fermerSDL(SDL_Window* win,SDL_Renderer* rend,TTF_Font *font)
     Mix_FreeChunk(clique);
     Mix_FreeChunk(gagne);
     Mix_FreeChunk(perdu);
+    Mix_FreeChunk(v);
+    Mix_FreeChunk(f);
+    Mix_FreeChunk(p);
     Mix_FreeMusic(generique);
     TTF_CloseFont(font);
     SDL_DestroyRenderer(rend);
@@ -50,6 +56,7 @@ void initializerEtatJeux(etatJeux* monEtat,options* mesOptions)
     monEtat->tentative = 1;
     monEtat->curseur = 0;
     monEtat->score = 0;
+    monEtat->animation = 5.0;
     genererMot(monEtat->mot,monEtat->taille,mesOptions->difficulte+1);
     monEtat->etatPartie = ENCOURS;
     for(int i=0;i<7;i++)
@@ -85,7 +92,7 @@ void grille(SDL_Rect rectangles[],int taille)
 }
 
 // affiche et render tous les objets
-void afficher(SDL_Rect rectangles[],SDL_Renderer* rend,etatJeux* monEtat,SDL_Texture* lettres[],SDL_Texture* rondJaune,TTF_Font *font)
+void afficher(SDL_Rect rectangles[],SDL_Renderer* rend,etatJeux* monEtat,SDL_Texture* lettres[],SDL_Texture* rondJaune,TTF_Font *font,options* mesOptions)
 {
     // affichage de la grille
     SDL_SetRenderDrawColor(rend,53,59,72,255);
@@ -93,14 +100,30 @@ void afficher(SDL_Rect rectangles[],SDL_Renderer* rend,etatJeux* monEtat,SDL_Tex
     SDL_SetRenderDrawColor(rend,41,128,185,255);
     SDL_RenderFillRects(rend,rectangles,(monEtat->taille)*7);
     // affiche de l'evaluation (carre rouge ou rond jaune)
-    SDL_SetRenderDrawColor(rend,255,0,0,255);
-    int iter = (monEtat->tentative-1)*monEtat->taille;
+    int iter = (monEtat->tentative-2)*(monEtat->taille)+(int)monEtat->animation;
     for(int i=0;i<iter;i++)
     {
         if(monEtat->evaluation[i/monEtat->taille][i%monEtat->taille] == 'V')
+        {
+            SDL_SetRenderDrawColor(rend,255,0,0,255);
             SDL_RenderFillRect(rend,&rectangles[i]);
+        }
         else if(monEtat->evaluation[i/monEtat->taille][i%monEtat->taille] == 'P')
             SDL_RenderCopy(rend, rondJaune, NULL, &rectangles[i]);
+        else
+        {
+            SDL_SetRenderDrawColor(rend,41,128,255,255);
+            SDL_RenderFillRect(rend,&rectangles[i]);
+        }
+    }
+    if((int)monEtat->animation<monEtat->taille)
+    {
+        if(mesOptions->son == 0 && monEtat->evaluation[(iter-1)/monEtat->taille][(iter-1)%monEtat->taille] == 'V')
+            Mix_PlayChannel(1,v,0);
+        else if(mesOptions->son == 0 && monEtat->evaluation[(iter-1)/monEtat->taille][(iter-1)%monEtat->taille] == 'F')
+            Mix_PlayChannel(1,f,0);
+        else if(mesOptions->son == 0 && monEtat->evaluation[(iter-1)/monEtat->taille][(iter-1)%monEtat->taille] == 'P')
+            Mix_PlayChannel(1,p,0);
     }
     // affichage des lettres
     iter = (monEtat->tentative)*monEtat->taille;
@@ -234,7 +257,11 @@ void miseAjour(char lettre,etatJeux* monEtat,char** dictionnaire,int tailleDicti
     if(lettre == 0)
     {
         if(motValable(&(monEtat->input[monEtat->tentative-1][0]),monEtat->taille,monEtat->mot[0],dictionnaire,tailleDictio,monEtat->input,monEtat->tentative))
+        {
             comparer(&(monEtat->input[monEtat->tentative-1][0]),monEtat->mot,&(monEtat->evaluation[monEtat->tentative-1][0]),monEtat->taille);
+            monEtat->animation = 0.0;
+        }
+
         monEtat->tentative++;
         monEtat->curseur = 0;
         monEtat->tempsReflexion = mesOptions->tempsReflexion*60;
@@ -253,8 +280,12 @@ void miseAjour(char lettre,etatJeux* monEtat,char** dictionnaire,int tailleDicti
         if(monEtat->curseur<monEtat->taille-1)
             monEtat->curseur++;
     }
+    // animation
+    if((int)monEtat->animation < monEtat->taille)
+            monEtat->animation += 0.1;
+    else
+        monEtat->tempsReflexion--;
     // dimunition du temps de reflexion et passage a la tentative suivant en cas de sa consommation
-    monEtat->tempsReflexion--;
     if(monEtat->tempsReflexion<0)
     {
         monEtat->tentative++;
