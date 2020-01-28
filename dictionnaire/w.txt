@@ -2,7 +2,6 @@ wading
 wadings
 wagage
 wagages
-wagner
 wagnerien
 wagneriens
 wagonnee
@@ -25,12 +24,10 @@ wallonisme
 wallonne
 wallonnes
 wallons
-walter
 wapiti
 wapitis
 wargame
 wargames
-warner
 warrant
 warranta
 warrantage
@@ -70,7 +67,6 @@ welche
 welches
 welter
 welters
-werder
 wergeld
 wergelds
 western
@@ -89,7 +85,6 @@ wilayas
 winches
 winchester
 winchs
-winter
 wishbone
 wishbones
 wisigothe

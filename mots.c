@@ -86,29 +86,29 @@ int tailleDictionnaire(char a)
     {
         case 'a': return 13451;
         case 'b': return 9331;
-        case 'c': return 17354;
+        case 'c': return 17356;
         case 'd': return 16780;
-        case 'e': return 18346;
+        case 'e': return 18347;
         case 'f': return 7554;
         case 'g': return 6259;
-        case 'h': return 3116;
+        case 'h': return 3114;
         case 'i': return 4944;
         case 'j': return 1672;
-        case 'k': return 288;
-        case 'l': return 4781;
-        case 'm': return 9041;
-        case 'n': return 2293;
+        case 'k': return 284;
+        case 'l': return 4779;
+        case 'm': return 9039;
+        case 'n': return 2292;
         case 'o': return 3171;
-        case 'p': return 13962;
+        case 'p': return 13961;
         case 'q': return 493;
-        case 'r': return 17126;
-        case 's': return 11093;
-        case 't': return 8287;
+        case 'r': return 17125;
+        case 's': return 11090;
+        case 't': return 8285;
         case 'u': return 590;
         case 'v': return 4352;
-        case 'w': return 112;
-        case 'x': return 44;
-        case 'y': return 65;
+        case 'w': return 107;
+        case 'x': return 43;
+        case 'y': return 64;
         case 'z': return 560;
     }
 }
@@ -131,11 +131,11 @@ int modulo(int taille,int diff)
     {
         switch(taille)
         {
-            case 6:return 163;
-            case 7:return 205;
-            case 8:return 231;
-            case 9:return 177;
-            case 10:return 101;
+            case 6:return 431;
+            case 7:return 425;
+            case 8:return 358;
+            case 9:return 253;
+            case 10:return 143;
         }
     }
     if(diff==2)

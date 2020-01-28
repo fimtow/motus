@@ -727,7 +727,6 @@ landau
 landaulet
 landaulets
 landaus
-lander
 landes
 landgrave
 landgraves
@@ -4529,7 +4528,6 @@ luteriez
 luterions
 luterons
 luteront
-luther
 lutherie
 lutherien
 lutheriens

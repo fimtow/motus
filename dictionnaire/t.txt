@@ -651,7 +651,6 @@ tangent
 tangente
 tangentes
 tangents
-tanger
 tangible
 tangibles
 tangon
@@ -7986,7 +7985,6 @@ turluttes
 turlututu
 turnep
 turneps
-turner
 turnes
 turonien
 turonienne

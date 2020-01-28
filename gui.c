@@ -114,7 +114,7 @@ void afficher(SDL_Rect rectangles[],SDL_Renderer* rend,etatJeux* monEtat,SDL_Tex
             SDL_RenderCopy(rend, rondJaune, NULL, &rectangles[i]);
         else
         {
-            SDL_SetRenderDrawColor(rend,41,128,255,255);
+            SDL_SetRenderDrawColor(rend,41,128,200,255);
             SDL_RenderFillRect(rend,&rectangles[i]);
         }
     }

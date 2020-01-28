@@ -1225,7 +1225,6 @@ rainates
 rainee
 rainees
 rainent
-rainer
 rainera
 rainerai
 rainerais
@@ -1291,6 +1290,7 @@ rainurez
 rainuriez
 rainurions
 rainurons
+raisin
 raisine
 raisines
 raisins
@@ -15439,7 +15439,6 @@ roguees
 rogues
 rohart
 roharts
-rohmer
 roides
 roideur
 roideurs

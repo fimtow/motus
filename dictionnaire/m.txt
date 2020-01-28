@@ -2736,7 +2736,6 @@ massue
 massues
 mastaba
 mastabas
-master
 mastere
 mastic
 masticage
@@ -8312,7 +8311,6 @@ muletiers
 mulets
 mulette
 mulettes
-muller
 mulons
 mulota
 mulotai

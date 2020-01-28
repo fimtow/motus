@@ -4580,7 +4580,6 @@ silures
 silurien
 silurienne
 siluriens
-silver
 silves
 silvestre
 simagree
@@ -5228,7 +5227,6 @@ sobriete
 sobrietes
 sobriquet
 sobriquets
-soccer
 sociable
 sociables
 social
@@ -7050,7 +7048,6 @@ spheroides
 sphincter
 sphincters
 sphinx
-spider
 spiders
 spinal
 spinale

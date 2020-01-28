@@ -1863,7 +1863,6 @@ historique
 historisme
 histrion
 histrions
-hitler
 hitlerien
 hitleriens
 hitlerisme
@@ -2827,7 +2826,6 @@ humour
 humours
 hunier
 huniers
-hunter
 huppee
 huppees
 huppes

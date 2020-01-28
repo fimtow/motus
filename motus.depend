@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1580255343 source:d:\projet c\motus\gui.c
+1580256550 source:d:\projet c\motus\gui.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -69,7 +69,7 @@
 	"parametre.h"
 	"highScore.h"
 
-1580242138 source:d:\projet c\motus\mots.c
+1580257304 source:d:\projet c\motus\mots.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>

@@ -11089,6 +11089,7 @@ entrecote
 entrecotes
 entrecoupa
 entrecoupe
+entree
 entrees
 entrefaite
 entrefer

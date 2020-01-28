@@ -89,7 +89,6 @@ kentias
 kenyane
 kephir
 kephirs
-kepler
 kerabau
 kerabaus
 keratine
@@ -167,7 +166,6 @@ kieselguhr
 kieserite
 kieserites
 kievecuel
-killer
 kilocycle
 kilocycles
 kilogramme
@@ -221,7 +219,6 @@ klaxonnez
 klaxonniez
 klaxonnons
 klaxons
-kleber
 kleenex
 klephte
 klephtes
@@ -241,7 +238,6 @@ kolkhoz
 kolkhoze
 kolkhozes
 kolkhozien
-koller
 konzern
 konzerns
 kopeck
