@@ -29,7 +29,7 @@ void comparer(char input[],char mot[],char evaluation[],int taille)
                 if(tab[j] == 'F' && input[i] == mot[j])
                 {
                     evaluation[i] = 'P';
-                    tab[j] = 'F';
+                    tab[j] = 'V';
                 }
             }
         }

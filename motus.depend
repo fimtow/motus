@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1580256550 source:d:\projet c\motus\gui.c
+1580258082 source:d:\projet c\motus\gui.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -34,7 +34,7 @@
 	<time.h>
 	"jeux.h"
 
-1580246951 source:d:\projet c\motus\main.c
+1580259132 source:d:\projet c\motus\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -54,7 +54,7 @@
 
 1579890619 d:\projet c\motus\parametre.h
 
-1580256385 source:d:\projet c\motus\menu.c
+1580258471 source:d:\projet c\motus\menu.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>

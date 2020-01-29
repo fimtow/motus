@@ -146,7 +146,7 @@ void afficherMenu(SDL_Window* win,SDL_Renderer* rend,SDL_Rect bouttons[],SDL_Tex
     afficherText("Jouer",0,BOUTTONY,40,255,255,255,255);
     afficherText("HighScores",0,BOUTTONY+(BOUTTONH+BOUTTOND),40,255,255,255,255);
     afficherText("Options",0,BOUTTONY+(BOUTTONH+BOUTTOND)*2,40,255,255,255,255);
-    afficherText("Jeux réalisé par BELGRID YOUNES & AZROUR ABDESSAMAD",40,450,20,255,255,255,255);
+    afficherText("Jeu réalisé par BELGRID YOUNES & AZROUR ABDESSAMAD",40,450,20,255,255,255,255);
     SDL_RenderPresent(rend);
 }
 
